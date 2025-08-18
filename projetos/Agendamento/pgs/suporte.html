@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Suporte - PPGD" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Suporte | PPGD</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+
+    <style>
+      /* CSS Variables */
+      :root {
+        --primary: #59110b;
+        --secondary: #7f1c14;
+        --accent: #9f2e1c;
+        --text: #333;
+        --text-light: #555;
+        --text-lighter: #666;
+        --white: #fff;
+        --shadow: rgba(89, 17, 11, 0.15);
+        --shadow-hover: rgba(89, 17, 11, 0.3);
+        --success: #28a745;
+        --error: #dc3545;
+        --warning: #ffc107;
+      }
+
+      /* Reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* Body */
+      body {
+        font-family: "Inter", sans-serif;
+        line-height: 1.6;
+        color: var(--text);
+        background: linear-gradient(
+          135deg,
+          var(--primary) 0%,
+          var(--secondary) 50%,
+          var(--accent) 100%
+        );
+        min-height: 100vh;
+      }
+
+      /* Header */
+      header {
+        background: rgba(255, 255, 255, 0.95);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 2px 20px var(--shadow);
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+      }
+
+      .header {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 1rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .header h1 {
+        color: var(--primary);
+        font-size: 1.8rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .header h1 i {
+        color: var(--secondary);
+      }
+
+      nav ul {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+        align-items: center;
+      }
+
+      nav a {
+        text-decoration: none;
+        color: var(--primary);
+        font-weight: 500;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+      }
+
+      nav a:hover {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: var(--white);
+        transform: translateY(-2px);
+      }
+
+      .btn-relatorio {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: var(--white) !important;
+        padding: 0.75rem 1.5rem !important;
+        border-radius: 25px !important;
+        box-shadow: 0 4px 15px var(--shadow-hover);
+      }
+
+      .btn-relatorio:hover {
+        transform: translateY(-3px) !important;
+        box-shadow: 0 6px 20px var(--shadow-hover) !important;
+      }
+
+      /* ===========================================================================
+       CONTEÚDO PRINCIPAL - PÁGINA DE SUPORTE
+       =========================================================================== */
+      main {
+        margin-top: 80px; /* Espaço para o header fixo */
+        padding: 2rem;
+        min-height: calc(100vh - 80px);
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        background: var(--white);
+        border-radius: 20px;
+        box-shadow: 0 20px 40px var(--shadow);
+        overflow: hidden;
+      }
+
+      .suporte-header {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: var(--white);
+        padding: 3rem 2rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .suporte-header::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+        opacity: 0.3;
+      }
+
+      .suporte-header h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        font-weight: 700;
+        position: relative;
+        z-index: 1;
+      }
+
+      .suporte-header p {
+        font-size: 1.1rem;
+        opacity: 0.9;
+        position: relative;
+        z-index: 1;
+      }
+
+      .suporte-content {
+        padding: 3rem 2rem;
+      }
+
+      .suporte-section {
+        margin-bottom: 3rem;
+      }
+
+      .suporte-section h2 {
+        color: var(--primary);
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .suporte-section h2 i {
+        color: var(--secondary);
+      }
+
+      .suporte-section p {
+        color: var(--text-light);
+        margin-bottom: 1rem;
+        line-height: 1.7;
+      }
+
+      .contato-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .contato-card {
+        background: var(--bg-light);
+        padding: 2rem;
+        border-radius: 16px;
+        border: 1px solid var(--border);
+        text-align: center;
+        transition: all 0.3s ease;
+      }
+
+      .contato-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 30px var(--shadow-hover);
+      }
+
+      .contato-card i {
+        font-size: 2.5rem;
+        color: var(--primary);
+        margin-bottom: 1rem;
+      }
+
+      .contato-card h3 {
+        color: var(--text);
+        margin-bottom: 1rem;
+        font-size: 1.3rem;
+        font-weight: 600;
+      }
+
+      .contato-card p {
+        color: var(--text-light);
+        margin-bottom: 0.5rem;
+      }
+
+      .contato-card a {
+        color: var(--primary);
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s ease;
+      }
+
+      .contato-card a:hover {
+        color: var(--secondary);
+      }
+
+      .faq-list {
+        list-style: none;
+        margin-top: 1.5rem;
+      }
+
+      .faq-item {
+        background: var(--bg-light);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        margin-bottom: 1rem;
+        overflow: hidden;
+        transition: all 0.3s ease;
+      }
+
+      .faq-item:hover {
+        box-shadow: 0 4px 20px var(--shadow);
+      }
+
+      .faq-question {
+        background: var(--white);
+        padding: 1.5rem;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid var(--border);
+        transition: background 0.3s ease;
+      }
+
+      .faq-question:hover {
+        background: var(--bg-light);
+      }
+
+      .faq-question h3 {
+        color: var(--text);
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin: 0;
+      }
+
+      .faq-question i {
+        color: var(--primary);
+        transition: transform 0.3s ease;
+      }
+
+      .faq-item.active .faq-question i {
+        transform: rotate(180deg);
+      }
+
+      .faq-answer {
+        padding: 1.5rem;
+        color: var(--text-light);
+        line-height: 1.6;
+        display: none;
+      }
+
+      .faq-item.active .faq-answer {
+        display: block;
+      }
+
+      .horario-atendimento {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: var(--white);
+        padding: 2rem;
+        border-radius: 16px;
+        text-align: center;
+        margin-top: 2rem;
+      }
+
+      .horario-atendimento h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        font-weight: 600;
+      }
+
+      .horario-atendimento p {
+        opacity: 0.9;
+        margin-bottom: 0.5rem;
+      }
+
+      /* Responsividade */
+      @media (max-width: 768px) {
+        main {
+          padding: 1rem;
+          margin-top: 70px;
+        }
+
+        .suporte-header {
+          padding: 2rem 1rem;
+        }
+
+        .suporte-header h1 {
+          font-size: 2rem;
+        }
+
+        .suporte-content {
+          padding: 2rem 1rem;
+        }
+
+        .contato-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .header {
+          padding: 1rem;
+        }
+
+        .header h1 {
+          font-size: 1.5rem;
+        }
+
+        nav ul {
+          gap: 1rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .suporte-header h1 {
+          font-size: 1.8rem;
+        }
+
+        .suporte-content {
+          padding: 1.5rem 1rem;
+        }
+
+        .contato-card {
+          padding: 1.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="header">
+        <h1>
+          <i class="fas fa-graduation-cap"></i>
+          PPGD FADISP
+        </h1>
+        <nav>
+          <ul class="header-menu">
+            <li>
+              <a href="../index.html"><i class="fas fa-home"></i> Início</a>
+            </li>
+            <li>
+              <a href="agendar.html"
+                ><i class="fas fa-calendar-plus"></i> Agendar Banca</a
+              >
+            </li>
+            <li>
+              <a href="suporte.html"><i class="fas fa-headset"></i> Suporte</a>
+            </li>
+            <li>
+              <a href="../relatório/relatorio.html" class="btn-relatorio"
+                ><i class="fas fa-chart-line"></i> Relatório</a
+              >
+            </li>
+            <li>
+              <a href="../portifolio/index.html" class="btn-portfolio"
+                ><i class="fas fa-home"></i> Portfólio</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <div class="container">
+        <div class="suporte-header">
+          <h1>Central de Suporte</h1>
+          <p>
+            Estamos aqui para ajudar você com qualquer dúvida sobre o sistema
+          </p>
+        </div>
+
+        <div class="suporte-content">
+          <!-- Informações de Contato -->
+          <div class="suporte-section">
+            <h2><i class="fas fa-phone"></i> Informações de Contato</h2>
+            <p>Entre em contato conosco através dos canais abaixo:</p>
+
+            <div class="contato-grid">
+              <div class="contato-card">
+                <i class="fas fa-envelope"></i>
+                <h3>E-mail</h3>
+                <p>suporte@ppgd.edu.br</p>
+                <a href="mailto:suporte@ppgd.edu.br">Enviar e-mail</a>
+              </div>
+
+              <div class="contato-card">
+                <i class="fas fa-phone"></i>
+                <h3>Telefone</h3>
+                <p>(11) 99999-9999</p>
+                <a href="tel:+5511999999999">Ligar agora</a>
+              </div>
+
+              <div class="contato-card">
+                <i class="fas fa-clock"></i>
+                <h3>Horário de Atendimento</h3>
+                <p>Segunda a Sexta</p>
+                <p>8h às 18h</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Perguntas Frequentes -->
+          <div class="suporte-section">
+            <h2><i class="fas fa-question-circle"></i> Perguntas Frequentes</h2>
+            <p>Confira as respostas para as dúvidas mais comuns:</p>
+
+            <ul class="faq-list">
+              <li class="faq-item">
+                <div class="faq-question">
+                  <h3>Como agendar uma banca?</h3>
+                  <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                  <p>
+                    Para agendar uma banca, acesse a página "Agendar" no menu
+                    principal, preencha o formulário com todas as informações
+                    solicitadas e envie. Nossa equipe entrará em contato para
+                    confirmar os detalhes.
+                  </p>
+                </div>
+              </li>
+
+              <li class="faq-item">
+                <div class="faq-question">
+                  <h3>Quais documentos são necessários?</h3>
+                  <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                  <p>
+                    Você precisará do trabalho completo em PDF, informações
+                    pessoais, dados acadêmicos e detalhes sobre a banca. Todos
+                    os campos obrigatórios estão marcados com asterisco (*).
+                  </p>
+                </div>
+              </li>
+
+              <li class="faq-item">
+                <div class="faq-question">
+                  <h3>Posso alterar a data da banca?</h3>
+                  <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                  <p>
+                    <strong>Não é possível alterar a data e horário</strong>
+                    após o envio do formulário. O agendamento é definitivo e
+                    deve ser respeitado conforme solicitado. Em caso de extrema
+                    necessidade, entre em contato com a coordenação para avaliar
+                    a possibilidade de reagendamento, mas isso não é garantido.
+                  </p>
+                </div>
+              </li>
+
+              <li class="faq-item">
+                <div class="faq-question">
+                  <h3>Como funciona a modalidade online?</h3>
+                  <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                  <p>
+                    A modalidade online utiliza plataformas de videoconferência.
+                    Você receberá um link de acesso e instruções detalhadas por
+                    e-mail alguns dias antes da banca.
+                  </p>
+                </div>
+              </li>
+
+              <li class="faq-item">
+                <div class="faq-question">
+                  <h3>Qual o prazo para agendamento?</h3>
+                  <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                  <p>
+                    Recomendamos fazer o agendamento com pelo menos 30 dias de
+                    antecedência para garantir a disponibilidade dos membros da
+                    banca e a organização adequada.
+                  </p>
+                </div>
+              </li>
+
+              <li class="faq-item">
+                <div class="faq-question">
+                  <h3>Quantos membros devem compor a banca?</h3>
+                  <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                  <p>
+                    <strong>Mestrado:</strong> 3 membros (1 orientador + 1
+                    membro interno + 1 membro externo)<br />
+                    <strong>Doutorado:</strong> 5 membros (1 orientador + 2
+                    membros internos + 2 membros externos)<br />
+                    <em>Pelo menos uma professora deve compor a banca.</em>
+                  </p>
+                </div>
+              </li>
+
+              <li class="faq-item">
+                <div class="faq-question">
+                  <h3>Qual a diferença entre qualificação e defesa?</h3>
+                  <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                  <p>
+                    <strong>Qualificação:</strong> Apresentação do projeto de
+                    pesquisa para aprovação da banca.<br />
+                    <strong>Defesa:</strong> Apresentação do trabalho final
+                    completo para obtenção do título.<br />
+                    A qualificação é obrigatória antes da defesa.
+                  </p>
+                </div>
+              </li>
+
+              <li class="faq-item">
+                <div class="faq-question">
+                  <h3>Como escolher os membros da banca?</h3>
+                  <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                  <p>
+                    Os membros internos são escolhidos da lista de professores
+                    do PPGD. Para membros externos, você pode sugerir
+                    especialistas da área, mas a coordenação fará a validação
+                    final. Todos devem ter titulação compatível com o nível do
+                    programa.
+                  </p>
+                </div>
+              </li>
+
+              <li class="faq-item">
+                <div class="faq-question">
+                  <h3>
+                    O que fazer se um membro da banca não puder comparecer?
+                  </h3>
+                  <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                  <p>
+                    Em caso de ausência de um membro, entre em contato
+                    imediatamente com a coordenação. A banca pode ser realizada
+                    com pelo menos 2/3 dos membros presentes, desde que seja
+                    mantida a proporção entre internos e externos.
+                  </p>
+                </div>
+              </li>
+
+              <li class="faq-item">
+                <div class="faq-question">
+                  <h3>Como funciona o sistema de protocolo?</h3>
+                  <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                  <p>
+                    Após o envio do formulário, você receberá um número de
+                    protocolo único (ex: PPGD-2025-001). Use este número para
+                    acompanhar o status do seu agendamento e para qualquer
+                    comunicação com a coordenação.
+                  </p>
+                </div>
+              </li>
+
+              <li class="faq-item">
+                <div class="faq-question">
+                  <h3>Posso cancelar uma banca agendada?</h3>
+                  <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                  <p>
+                    <strong>Cancelamentos não são permitidos</strong> após o
+                    envio do formulário. O agendamento é um compromisso formal e
+                    deve ser cumprido. Em caso de emergência médica ou situação
+                    excepcional, entre em contato imediatamente com a
+                    coordenação para documentar a situação, mas o cancelamento
+                    não é garantido.
+                  </p>
+                </div>
+              </li>
+
+              <li class="faq-item">
+                <div class="faq-question">
+                  <h3>Quais são os requisitos para agendamento?</h3>
+                  <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                  <p>
+                    <strong>Mestrado:</strong> Mínimo de 12 meses de matrícula,
+                    projeto aprovado pelo orientador, créditos cumpridos.<br />
+                    <strong>Doutorado:</strong> Mínimo de 24 meses de matrícula,
+                    projeto aprovado, qualificação realizada, créditos
+                    cumpridos.
+                  </p>
+                </div>
+              </li>
+
+              <li class="faq-item">
+                <div class="faq-question">
+                  <h3>Como acompanhar o status do agendamento?</h3>
+                  <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                  <p>
+                    Você receberá atualizações por e-mail em cada etapa do
+                    processo. Para consultas específicas, entre em contato
+                    usando o número de protocolo fornecido no momento do
+                    agendamento.
+                  </p>
+                </div>
+              </li>
+
+              <li class="faq-item">
+                <div class="faq-question">
+                  <h3>O que acontece no dia da banca?</h3>
+                  <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                  <p>
+                    Chegue com 30 minutos de antecedência. Para bancas
+                    presenciais, apresente-se na sala designada. Para online,
+                    acesse o link enviado 15 minutos antes. A banca tem duração
+                    média de 2-3 horas, incluindo apresentação e arguição.
+                  </p>
+                </div>
+              </li>
+
+              <li class="faq-item">
+                <div class="faq-question">
+                  <h3>Como confirmar os dados antes do envio?</h3>
+                  <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                  <p>
+                    <strong>Revise cuidadosamente todos os dados</strong> antes
+                    de enviar o formulário. Após o envio, não será possível
+                    alterar data, horário, membros da banca ou outras
+                    informações. Use o checklist disponível na página de
+                    agendamento para verificar se todos os campos obrigatórios
+                    foram preenchidos corretamente.
+                  </p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Horário de Atendimento -->
+          <div class="horario-atendimento">
+            <h3>Horário de Atendimento</h3>
+            <p><strong>Segunda a Sexta:</strong> 8h às 18h</p>
+            <p>
+              <strong>Sábados:</strong> 8h às 12h (apenas para casos urgentes)
+            </p>
+            <p><strong>Domingos e Feriados:</strong> Não atendemos</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="../js/suporte.js"></script>
+  </body>
+</html>

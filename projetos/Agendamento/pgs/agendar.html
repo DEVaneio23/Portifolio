@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Agendamento de bancas FADISP" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agendamento de Banca | PPGD-FADISP</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+
+    <style>
+      :root {
+        --primary: #59110b;
+        --secondary: #7f1c14;
+        --accent: #9f2e1c;
+        --text: #333;
+        --text-light: #555;
+        --text-lighter: #666;
+        --white: #fff;
+        --shadow: rgba(89, 17, 11, 0.15);
+        --shadow-hover: rgba(89, 17, 11, 0.3);
+        --success: #28a745;
+        --error: #dc3545;
+        --warning: #ffc107;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        line-height: 1.6;
+        color: var(--text);
+        background: linear-gradient(
+          135deg,
+          var(--primary) 0%,
+          var(--secondary) 50%,
+          var(--accent) 100%
+        );
+        min-height: 100vh;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      /* Header */
+      header {
+        background: rgba(255, 255, 255, 0.95);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 2px 20px var(--shadow);
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+      }
+
+      .header {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 1rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .header h1 {
+        color: var(--primary);
+        font-size: 1.8rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .header h1 i {
+        color: var(--secondary);
+      }
+
+      nav ul {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+        align-items: center;
+      }
+
+      nav a {
+        text-decoration: none;
+        color: var(--primary);
+        font-weight: 500;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+      }
+
+      nav a:hover {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: var(--white);
+        transform: translateY(-2px);
+      }
+
+      .btn-relatorio {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: var(--white) !important;
+        padding: 0.75rem 1.5rem !important;
+        border-radius: 25px !important;
+        box-shadow: 0 4px 15px var(--shadow-hover);
+      }
+
+      .btn-relatorio:hover {
+        transform: translateY(-3px) !important;
+        box-shadow: 0 6px 20px var(--shadow-hover) !important;
+      }
+
+      /* Main Content */
+      main {
+        margin-top: 80px;
+        padding: 2rem;
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .formulario-wrapper {
+        background: rgba(255, 255, 255, 0.95);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 2.5rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        animation: fadeInUp 0.6s ease-out;
+      }
+
+      .formulario-wrapper h1 {
+        color: var(--primary);
+        font-size: 2.5rem;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+      }
+
+      .formulario-wrapper h1 i {
+        color: var(--secondary);
+      }
+
+      /* Form Styles */
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+        color: var(--text);
+      }
+
+      .form-control {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        border: 2px solid #e1e5e9;
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        background: var(--white);
+      }
+
+      .form-control:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(89, 17, 11, 0.1);
+      }
+
+      .form-control.valid {
+        border-color: var(--success);
+      }
+
+      .form-control.invalid {
+        border-color: var(--error);
+      }
+
+      .form-hint {
+        display: block;
+        margin-top: 0.25rem;
+        font-size: 0.875rem;
+        color: var(--text-lighter);
+      }
+
+      .form-row {
+        display: flex;
+        gap: 1rem;
+      }
+
+      /* Upload Area */
+      .upload-area {
+        border: 2px dashed #e1e5e9;
+        border-radius: 8px;
+        padding: 2rem;
+        text-align: center;
+        transition: all 0.3s ease;
+        background: var(--white);
+      }
+
+      .upload-area:hover {
+        border-color: var(--primary);
+        background: rgba(89, 17, 11, 0.02);
+      }
+
+      .upload-content {
+        position: relative;
+      }
+
+      .upload-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+      }
+
+      .upload-title {
+        display: block;
+        font-weight: 600;
+        color: var(--text);
+        margin-bottom: 0.5rem;
+      }
+
+      .upload-subtitle {
+        display: block;
+        color: var(--text-lighter);
+        font-size: 0.875rem;
+      }
+
+      .upload-area input[type="file"] {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        cursor: pointer;
+      }
+
+      .file-info {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: var(--success);
+        color: var(--white);
+        padding: 1rem;
+        border-radius: 8px;
+        margin-top: 1rem;
+      }
+
+      .file-details {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+      }
+
+      .file-name {
+        font-weight: 600;
+      }
+
+      .file-size {
+        font-size: 0.875rem;
+        opacity: 0.9;
+      }
+
+      .remove-file {
+        background: none;
+        border: none;
+        color: var(--white);
+        font-size: 1.2rem;
+        cursor: pointer;
+        padding: 0.5rem;
+        border-radius: 4px;
+        transition: background 0.3s ease;
+      }
+
+      .remove-file:hover {
+        background: rgba(255, 255, 255, 0.2);
+      }
+
+      /* Progress Bar */
+      .progress-bar {
+        width: 100%;
+        height: 8px;
+        background: #e1e5e9;
+        border-radius: 4px;
+        margin: 0.5rem 0 0.5rem 0;
+        overflow: hidden;
+      }
+
+      .progress-indicator {
+        height: 100%;
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+        border-radius: 4px;
+        transition: width 0.3s ease;
+      }
+
+      /* Buttons */
+      .btn {
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+      }
+
+      .btn-principal {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: var(--white);
+        box-shadow: 0 4px 15px var(--shadow-hover);
+      }
+
+      .btn-principal:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px var(--shadow-hover);
+      }
+
+      .btn:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none !important;
+      }
+
+      /* Alerts (Improved Visibility) */
+      .alert {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 1rem;
+        border-radius: 8px;
+        margin: 1rem 0 0.5rem 0;
+        font-size: 0.9rem;
+        border-left: 5px solid;
+        animation: fadeIn 0.3s ease;
+      }
+
+      .alert.hidden {
+        display: none;
+      }
+
+      .alert i {
+        font-size: 1.2rem;
+      }
+
+      .alert.error,
+      .alert.alert-danger {
+        background: rgba(220, 53, 69, 0.1);
+        color: #b82c3a;
+        border-color: #dc3545;
+      }
+
+      .alert.success,
+      .alert.alert-success {
+        background: rgba(40, 167, 69, 0.1);
+        color: #1c7430;
+        border-color: #28a745;
+      }
+
+      .alert.warning,
+      .alert.alert-warning {
+        background: rgba(255, 193, 7, 0.15);
+        color: #b38600;
+        border-color: #ffc107;
+      }
+
+      /* Layout do Agendamento */
+      .agendamento-layout {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 2rem;
+        align-items: flex-start;
+      }
+
+      /* Checklist */
+      .checklist-container {
+        background: rgba(255, 255, 255, 0.95);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 1.2rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        margin-top: 0;
+        animation: fadeInUp 0.6s ease-out 0.2s both;
+        position: sticky;
+        top: 100px;
+      }
+
+      .checklist-container h2 {
+        color: var(--primary);
+        font-size: 1.15rem;
+        font-weight: 700;
+        margin-bottom: 0.8rem;
+        text-align: center;
+      }
+
+      .checklist {
+        display: grid;
+        gap: 0.25rem;
+      }
+
+      .checklist-item {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 0.3rem;
+        border-radius: 6px;
+        transition: all 0.3s ease;
+        font-size: 0.82rem;
+      }
+
+      .checklist-item.completed {
+        background: rgba(40, 167, 69, 0.1);
+        color: var(--success);
+      }
+
+      .checklist-item.pending {
+        background: rgba(255, 193, 7, 0.1);
+        color: var(--warning);
+      }
+
+      .checkmark {
+        font-weight: bold;
+        font-size: 0.9rem;
+      }
+
+      /* Animations */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .header {
+          padding: 1rem;
+          flex-direction: column;
+          gap: 1rem;
+        }
+
+        nav ul {
+          gap: 1rem;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+
+        main {
+          margin-top: 140px;
+          padding: 1rem;
+        }
+
+        .formulario-wrapper {
+          padding: 1.5rem;
+        }
+
+        .formulario-wrapper h1 {
+          font-size: 2rem;
+        }
+
+        .form-row {
+          flex-direction: column;
+        }
+
+        .checklist-container {
+          padding: 1.5rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        main {
+          margin-top: 160px;
+        }
+
+        .formulario-wrapper {
+          padding: 1rem;
+        }
+
+        .formulario-wrapper h1 {
+          font-size: 1.5rem;
+          flex-direction: column;
+          gap: 0.5rem;
+        }
+
+        .upload-area {
+          padding: 1rem;
+        }
+
+        .upload-icon {
+          font-size: 2rem;
+        }
+      }
+
+      @media (max-width: 1024px) {
+        .agendamento-layout {
+          grid-template-columns: 1fr;
+        }
+        .checklist-container {
+          position: static;
+          margin-top: 2rem;
+        }
+      }
+
+      /* Membros Internos (Novo Layout) */
+      .campo {
+        margin-bottom: 1.5rem;
+      }
+      .campo label,
+      .form-group > label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+        color: var(--text);
+      }
+      .campo .ajuda {
+        display: block;
+        margin-top: 0.25rem;
+        font-size: 0.875rem;
+        color: var(--text-lighter);
+      }
+      .campo-membros-internos {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 0.75rem;
+        margin-top: 1rem;
+        background-color: rgba(0, 0, 0, 0.02);
+        padding: 1rem;
+        border: 1px solid #e1e5e9;
+        border-radius: 8px;
+      }
+      .membro-interno-item {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.75rem;
+        border-radius: 8px;
+        background-color: var(--white);
+        border: 1px solid #e1e5e9;
+        transition: all 0.2s ease;
+        cursor: pointer;
+      }
+      .membro-interno-item:hover {
+        border-color: var(--primary);
+        background-color: rgba(89, 17, 11, 0.05);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+      }
+      .membro-interno-item.item-selected {
+        background: rgba(89, 17, 11, 0.1);
+        border-color: var(--primary);
+      }
+
+      /* Custom Checkbox Styling */
+      .membro-interno-item input[type="checkbox"] {
+        opacity: 0;
+        position: absolute;
+        z-index: -1;
+      }
+
+      .membro-interno-item label {
+        position: relative;
+        padding-left: 2em;
+        color: var(--text-light);
+        cursor: pointer;
+      }
+
+      .membro-interno-item label::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 1.2em;
+        height: 1.2em;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        background: var(--white);
+        transition: all 0.2s ease;
+      }
+
+      .membro-interno-item.disabled {
+        opacity: 0.5;
+        pointer-events: none;
+        background-color: #f8f9fa;
+      }
+
+      .membro-interno-item label::after {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        width: 1.2em;
+        height: 1.2em;
+        line-height: 1.2em;
+        text-align: center;
+        transform: translateY(-50%) scale(0);
+        font-size: 1.2em;
+        font-weight: bold;
+        color: var(--white);
+        transition: transform 0.2s ease;
+      }
+
+      .membro-interno-item input[type="checkbox"]:checked + label::before {
+        background: var(--primary);
+        border-color: var(--primary);
+      }
+
+      .membro-interno-item input[type="checkbox"]:checked + label::after {
+        transform: translateY(-50%) scale(1);
+      }
+
+      .membro-interno-item.item-selected label {
+        color: var(--primary);
+        font-weight: 500;
+      }
+
+      /* Estilos para Membros Externos (Refatorado) */
+      .membros-externos-group .ajuda,
+      .info-curso {
+        margin-bottom: 1rem;
+        display: block;
+      }
+
+      #membros-externos-container {
+        display: grid;
+        gap: 1.5rem;
+        margin: 1rem 0;
+      }
+
+      .membro-externo-card {
+        background: rgba(0, 0, 0, 0.02);
+        border: 1px solid #e1e5e9;
+        border-radius: 12px;
+        padding: 1.5rem;
+        transition: box-shadow 0.3s ease;
+      }
+
+      .membro-externo-card:focus-within {
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      }
+
+      .membro-externo-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+        padding-bottom: 0.75rem;
+        border-bottom: 1px solid #e1e5e9;
+      }
+
+      .membro-externo-header h3 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--text);
+      }
+
+      .membro-externo-card .btn-remover {
+        background: transparent;
+        border: none;
+        color: var(--error);
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition: all 0.2s;
+        padding: 0.25rem;
+      }
+
+      .membro-externo-card .btn-remover:hover {
+        color: #a71d2a;
+        transform: scale(1.1);
+      }
+
+      .membro-externo-body {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+
+      .membro-externo-body .form-group {
+        margin-bottom: 0;
+      }
+
+      .membro-externo-body .form-group.full-width {
+        grid-column: 1 / -1;
+      }
+
+      .membro-externo-card .form-control::placeholder {
+        color: #999;
+      }
+
+      /* Footer fixo bonito */
+      .footer {
+        background: rgba(89, 17, 11, 0.9);
+        color: var(--white);
+        padding: 2rem 0;
+        margin-top: 4rem;
+        position: relative;
+        bottom: 0;
+        width: 100%;
+        box-shadow: 0 -2px 20px var(--shadow);
+      }
+      .footer-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        text-align: center;
+      }
+      .footer ul {
+        list-style: none;
+        margin-bottom: 1rem;
+        padding: 0;
+      }
+      .footer li {
+        margin-bottom: 0.5rem;
+        opacity: 0.9;
+      }
+      .footer p {
+        opacity: 0.7;
+        font-size: 0.9rem;
+      }
+    </style>
+  </head>
+
+  <body class="agendamento-page">
+    <header>
+      <div class="header">
+        <h1>
+          <i class="fas fa-graduation-cap"></i>
+          PPGD FADISP
+        </h1>
+        <nav>
+          <ul class="header-menu">
+            <li>
+              <a href="../index.html"><i class="fas fa-home"></i> Início</a>
+            </li>
+            <li>
+              <a href="agendar.html"
+                ><i class="fas fa-calendar-plus"></i> Agendar Banca</a
+              >
+            </li>
+            <li>
+              <a href="suporte.html"><i class="fas fa-headset"></i> Suporte</a>
+            </li>
+            <li>
+              <a href="../relatório/relatorio.html" class="btn-relatorio"
+                ><i class="fas fa-chart-line"></i> Relatório</a
+              >
+            </li>
+            <li>
+              <a href="../portifolio/index.html" class="btn-portfolio"
+                ><i class="fas fa-home"></i> Portfólio</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main class="formulario-container">
+      <div class="agendamento-layout">
+        <div class="formulario-wrapper">
+          <form
+            id="agendamento-form"
+            action="/pgs/confirmacao.html"
+            method="GET"
+          >
+            <h1><i class="fas fa-calendar-check"></i> Agendamento de Banca</h1>
+
+            <div class="form-group">
+              <label for="aluno">Nome do Aluno</label>
+              <input
+                type="text"
+                id="aluno"
+                name="aluno"
+                class="form-control"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="email_aluno">E-mail do Aluno</label>
+              <input
+                type="email"
+                id="email_aluno"
+                name="email_aluno"
+                class="form-control"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="cpf_aluno">CPF do Aluno</label>
+              <input
+                type="text"
+                id="cpf_aluno"
+                name="cpf_aluno"
+                class="form-control"
+                inputmode="numeric"
+                placeholder="000.000.000-00"
+                required
+                maxlength="14"
+              />
+              <small class="form-hint">Formato: 000.000.000-00</small>
+            </div>
+
+            <div class="form-group">
+              <label for="curso">Curso</label>
+              <select id="curso" name="curso" class="form-control" required>
+                <option value="">Selecione</option>
+                <option value="mestrado">Mestrado</option>
+                <option value="doutorado">Doutorado</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="tipo">Tipo de Banca</label>
+              <select id="tipo" name="tipo" class="form-control" required>
+                <option value="">Selecione</option>
+                <option value="qualificacao">Qualificação</option>
+                <option value="defesa">Defesa</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="modalidade_banca">Modalidade da Banca</label>
+              <select
+                id="modalidade_banca"
+                name="modalidade_banca"
+                class="form-control"
+                required
+              >
+                <option value="">Selecione...</option>
+                <option value="presencial">Presencial</option>
+                <option value="online">Online</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="projeto_pesquisa">Projeto de Pesquisa</label>
+              <select
+                id="projeto_pesquisa"
+                name="projeto_pesquisa"
+                class="form-control"
+                required
+              >
+                <option value="">Selecione um projeto</option>
+                <option value="direito_constitucional">
+                  Direito Constitucional
+                </option>
+                <option value="direito_penal">Direito Penal</option>
+                <option value="direito_civil">Direito Civil</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="titulo">Título</label>
+              <input
+                type="text"
+                id="titulo"
+                name="titulo"
+                class="form-control"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="resumo">Resumo</label>
+              <textarea
+                id="resumo"
+                name="resumo"
+                rows="5"
+                class="form-control"
+                required
+              ></textarea>
+              <div id="contador-palavras">0 palavras</div>
+              <div class="progress-bar">
+                <div
+                  id="progress-indicator"
+                  class="progress-indicator hidden"
+                ></div>
+              </div>
+              <div id="resumo-alert" class="alert hidden"></div>
+            </div>
+
+            <div class="form-group">
+              <label for="palavras_chave"
+                >Palavras-chave (mínimo 2, separadas por vírgula)</label
+              >
+              <input
+                type="text"
+                id="palavras_chave"
+                name="palavras_chave"
+                class="form-control"
+                placeholder=""
+                required
+              />
+              <small class="form-hint">Separe os termos por vírgulas.</small>
+              <div id="erro-palavras-chave" class="alert hidden"></div>
+            </div>
+
+            <div class="form-group">
+              <label for="trabalho_final">Upload do Trabalho Final (PDF)</label>
+              <div class="upload-area" id="upload-area">
+                <div class="upload-content">
+                  <div class="upload-icon">📄</div>
+                  <div class="upload-text">
+                    <span class="upload-title"
+                      >Clique para selecionar ou arraste o arquivo</span
+                    >
+                    <span class="upload-subtitle"
+                      >Apenas arquivos PDF são aceitos</span
+                    >
+                  </div>
+                  <input
+                    type="file"
+                    id="trabalho_final"
+                    name="trabalho_final"
+                    accept=".pdf"
+                    required
+                  />
+                </div>
+                <div class="file-info" id="file-info" style="display: none">
+                  <div class="file-details">
+                    <span class="file-name" id="file-name"></span>
+                    <span class="file-size" id="file-size"></span>
+                  </div>
+                  <button type="button" class="remove-file" id="remove-file">
+                    ✕
+                  </button>
+                </div>
+              </div>
+              <small class="form-hint"
+                >Envie o arquivo da sua dissertação ou tese em formato
+                PDF.</small
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="orientador">Nome do Orientador</label>
+              <input
+                type="text"
+                id="orientador"
+                name="orientador"
+                class="form-control"
+                required
+                placeholder="Digite o nome completo do orientador"
+              />
+            </div>
+
+            <div class="campo">
+              <label for="membros-internos">Membros Internos</label>
+              <div id="alert-membros-internos" class="alert hidden"></div>
+              <div id="membros-internos" class="campo-membros-internos">
+                <!-- A lista será preenchida dinamicamente pelo JavaScript -->
+              </div>
+              <small class="ajuda"
+                >Mestrado: 1 membro interno. Doutorado: 2 membros internos. Pelo
+                menos uma professora deve compor a banca.</small
+              >
+            </div>
+
+            <div
+              class="form-group"
+              id="controle-membros-externos"
+              style="display: none"
+            >
+              <label>Deseja adicionar membros externos?</label>
+              <div class="radio-group">
+                <input
+                  type="radio"
+                  id="membros-externos-sim"
+                  name="deseja_membros_externos"
+                  value="sim"
+                />
+                <label for="membros-externos-sim">Sim</label>
+                <input
+                  type="radio"
+                  id="membros-externos-nao"
+                  name="deseja_membros_externos"
+                  value="nao"
+                  checked
+                />
+                <label for="membros-externos-nao">Não</label>
+              </div>
+            </div>
+
+            <div
+              class="form-group membros-externos-group"
+              style="display: none"
+            >
+              <label>Membros Externos</label>
+              <div class="info-curso">
+                <small class="ajuda" id="info-membros-externos">
+                  Selecione o curso para ver os requisitos de membros externos
+                </small>
+              </div>
+              <div id="membros-externos-container">
+                <!-- Os cards serão adicionados dinamicamente pelo JavaScript -->
+              </div>
+              <div id="contador-externos" class="contador-membros">
+                0/0 membro(s) externo(s)
+              </div>
+              <button
+                type="button"
+                id="add-membro-externo"
+                class="btn"
+                disabled
+              >
+                Adicionar Membro Externo
+              </button>
+              <div id="alert-membros-externos" class="alert hidden"></div>
+            </div>
+
+            <div class="form-row">
+              <div
+                class="form-group"
+                style="flex: 1; min-width: 180px; margin-right: 10px"
+              >
+                <label for="data">Data</label>
+                <input
+                  type="date"
+                  id="data"
+                  name="data"
+                  class="form-control"
+                  required
+                />
+              </div>
+              <div class="form-group" style="flex: 1; min-width: 140px">
+                <label for="hora">Hora</label>
+                <input
+                  type="time"
+                  id="hora"
+                  name="hora"
+                  class="form-control"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="form-group envio-check">
+              <div class="checkbox-wrapper">
+                <input
+                  type="checkbox"
+                  id="confirmacao_envio"
+                  name="confirmacao_envio"
+                />
+                <label for="confirmacao_envio" class="checkbox-label"
+                  >Confirmo o envio do trabalho físico para a instituição</label
+                >
+                <div id="erro-confirmacao" class="alert hidden"></div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <button type="submit" class="btn btn-principal" id="submit-form">
+                Agendar Banca
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <div class="checklist-container">
+          <h2>Progresso do Formulário</h2>
+          <div class="checklist">
+            <div class="checklist-item" data-field="aluno">
+              <span class="checkmark">✓</span>
+              <span>Nome do Aluno</span>
+            </div>
+            <div class="checklist-item" data-field="email_aluno">
+              <span class="checkmark">✓</span>
+              <span>E-mail do Aluno</span>
+            </div>
+            <div class="checklist-item" data-field="cpf_aluno">
+              <span class="checkmark">✓</span>
+              <span>CPF do Aluno</span>
+            </div>
+            <div class="checklist-item" data-field="curso">
+              <span class="checkmark">✓</span>
+              <span>Curso</span>
+            </div>
+            <div class="checklist-item" data-field="tipo">
+              <span class="checkmark">✓</span>
+              <span>Tipo de Banca</span>
+            </div>
+            <div class="checklist-item" data-field="modalidade_banca">
+              <span class="checkmark">✓</span>
+              <span>Modalidade da Banca</span>
+            </div>
+            <div class="checklist-item" data-field="projeto_pesquisa">
+              <span class="checkmark">✓</span>
+              <span>Projeto de Pesquisa</span>
+            </div>
+            <div class="checklist-item" data-field="titulo">
+              <span class="checkmark">✓</span>
+              <span>Título</span>
+            </div>
+            <div class="checklist-item" data-field="resumo">
+              <span class="checkmark">✓</span>
+              <span>Resumo</span>
+            </div>
+            <div class="checklist-item" data-field="trabalho_final">
+              <span class="checkmark">✓</span>
+              <span>Upload do Trabalho Final</span>
+            </div>
+            <div class="checklist-item" data-field="orientador">
+              <span class="checkmark">✓</span>
+              <span>Nome do Orientador</span>
+            </div>
+            <div class="checklist-item" data-field="membros-internos">
+              <span class="checkmark">✓</span>
+              <span>Membros Internos</span>
+            </div>
+            <div class="checklist-item" data-field="mulher-na-banca">
+              <span class="checkmark">✓</span>
+              <span>Banca com Mulher</span>
+            </div>
+            <div class="checklist-item" data-field="data">
+              <span class="checkmark">✓</span>
+              <span>Data</span>
+            </div>
+            <div class="checklist-item" data-field="hora">
+              <span class="checkmark">✓</span>
+              <span>Hora</span>
+            </div>
+            <div
+              class="checklist-item"
+              data-field="confirmacao_envio"
+              data-visibility="defesa-only"
+            >
+              <span class="checkmark">✓</span>
+              <span>Confirmação de Envio</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer" id="contato">
+      <div class="footer-container">
+        <ul>
+          <li>Contato de suporte: (85) 99763-7360</li>
+          <li>E-mail de suporte: criar e-mail para isso</li>
+        </ul>
+        <p>FADISP - Alguns direitos reservados</p>
+      </div>
+    </footer>
+
+    <script type="module" src="../js/formulario-modular.js"></script>
+  </body>
+</html>

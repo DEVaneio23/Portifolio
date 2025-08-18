@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Anderson - Portfólio</title>
+  </head>
+  <body>
+    <div class="envoltorio">
+      <!-- Header -->
+      <header class="cabecalho">
+        <div class="cabecalho__conteudo">
+          <a href="#" class="cabecalho__logo">Anderson</a>
+          <nav>
+            <ul class="cabecalho__navegacao">
+              <li><a href="#sobre" class="cabecalho__link-nav">Sobre</a></li>
+              <li>
+                <a href="#habilidades" class="cabecalho__link-nav"
+                  >Habilidades</a
+                >
+              </li>
+              <li>
+                <a href="#projetos" class="cabecalho__link-nav">Projetos</a>
+              </li>
+              <li>
+                <a href="#contato" class="cabecalho__link-nav">Contato</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+
+      <main class="conteudo-principal">
+        <!-- Hero Section -->
+        <section class="secao secao--destaque destaque">
+          <div class="conteiner">
+            <h1 class="destaque__titulo">Olá, me chamo Anderson</h1>
+            <p class="destaque__subtitulo">
+              Desenvolvedor apaixonado por códigos
+            </p>
+            <div class="destaque__acoes">
+              <a href="#projetos" class="botao botao--grande">Ver Projetos</a>
+              <a href="#contato" class="botao botao--secundario botao--grande"
+                >Contato</a
+              >
+            </div>
+          </div>
+        </section>
+
+        <!-- Sobre Section -->
+        <section id="sobre" class="secao secao--sobre">
+          <div class="conteiner">
+            <h2 class="secao__titulo">Sobre Mim</h2>
+            <p class="secao__subtitulo">Conheça um pouco da minha jornada</p>
+
+            <div class="cartao">
+              <div class="cartao__conteudo">
+                <p>
+                  Olá, sou o Anderson, moro em Fortaleza, tenho 20 anos e curso
+                  Engenharia de Telecomunicações no IFCE (Instituto Federal de
+                  Educação, Ciência e Tecnologia do Ceará). Atualmente trabalho
+                  como professor de programação e robótica em uma empresa
+                  chamada "Super Geeks", mas meu sonho é trabalhar em uma
+                  empresa de tecnologia e desenvolvimento.
+                </p>
+                <p class="mt-2">
+                  Estou estudando para ser dev full stack, já tenho conhecimento
+                  em HTML, CSS, JavaScript, PostgreSQL e estudando Node.js e
+                  TypeScript. Sou apaixonado por aprender novas tecnologias e
+                  criar soluções inovadoras.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Habilidades Section -->
+        <section id="habilidades" class="secao secao--projetos">
+          <div class="conteiner">
+            <h2 class="secao__titulo">Habilidades</h2>
+            <p class="secao__subtitulo">Tecnologias que domino</p>
+
+            <div class="grjade grade--3-colunas">
+              <div class="cartao cartao--destaque">
+                <h3 class="cartao__titulo">Frontend</h3>
+                <div class="cartao__conteudo">
+                  <ul>
+                    <li>HTML5</li>
+                    <li>CSS3</li>
+                    <li>JavaScript (ES6+)</li>
+                    <li>TypeScript</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="cartao cartao--destaque">
+                <h3 class="cartao__titulo">Backend</h3>
+                <div class="cartao__conteudo">
+                  <ul>
+                    <li>Node.js</li>
+                    <li>Python</li>
+                    <li>C++</li>
+                    <li>C#</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="cartao cartao--destaque">
+                <h3 class="cartao__titulo">Banco de Dados</h3>
+                <div class="cartao__conteudo">
+                  <ul>
+                    <li>PostgreSQL</li>
+                    <li>SQL</li>
+                    <li>Modelagem de Dados</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Projetos Section -->
+        <section id="projetos" class="secao secao--contato">
+          <div class="conteiner">
+            <h2 class="secao__titulo">Projetos</h2>
+            <p class="secao__subtitulo">
+              Alguns dos meus projetos mais recentes
+            </p>
+
+            <div class="grade grade--2-colunas">
+              <div class="cartao cartao--projeto">
+                <h3 class="cartao__titulo">Gerenciador de Vendas</h3>
+                <div class="cartao__conteudo">
+                  <p>
+                    Sistema completo de gerenciamento de vendas para clube de
+                    tiro, desenvolvido com tecnologias modernas e interface
+                    responsiva.
+                  </p>
+                </div>
+                <div class="cartao__rodape">
+                  <a
+                    href="../projetos/clube-tiro-vendas/index.html"
+                    class="botao"
+                    >Ver Projeto</a
+                  >
+                </div>
+              </div>
+
+              <div class="cartao cartao--projeto">
+                <h3 class="cartao__titulo">Gerenciador de Finanças</h3>
+                <div class="cartao__conteudo">
+                  <p>
+                    Aplicação web para controle de finanças pessoais, com
+                    dashboard interativo e relatórios detalhados.
+                  </p>
+                </div>
+                <div class="cartao__rodape">
+                  <a href="../projetos/finance/index.html" class="botao"
+                    >Ver Projeto</a
+                  >
+                </div>
+              </div>
+
+              <div class="cartao cartao--projeto">
+                <h3 class="cartao__titulo">FADISP - Sistema de Agendamentos</h3>
+                <div class="cartao__conteudo">
+                  <p>
+                    Sistema de agendamentos de bancas para instituição
+                    educacional, com controle de usuários e calendário
+                    integrado.
+                  </p>
+                </div>
+                <div class="cartao__rodape">
+                  <a href="../projetos/Agendamento/index.html" class="botao"
+                    >Ver Projeto</a
+                  >
+                </div>
+              </div>
+
+              <div class="cartao cartao--projeto">
+                <h3 class="cartao__titulo">Portfólio Pessoal</h3>
+                <div class="cartao__conteudo">
+                  <p>
+                    Este portfólio desenvolvido com HTML, CSS moderno e design
+                    responsivo, demonstrando minhas habilidades de frontend.
+                  </p>
+                </div>
+                <div class="cartao__rodape">
+                  <a href="#" class="botao botao--secundario">Ver Código</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Contato Section -->
+        <section id="contato" class="secao secao--sobre">
+          <div class="conteiner">
+            <h2 class="secao__titulo">Contato</h2>
+            <p class="secao__subtitulo">Vamos trabalhar juntos?</p>
+
+            <div class="grade grade--2-colunas">
+              <div class="cartao">
+                <h3 class="cartao__titulo">Informações de Contato</h3>
+                <div class="cartao__conteudo">
+                  <p><strong>Localização:</strong> Fortaleza, CE</p>
+                  <p><strong>Email:</strong> andersonfms32@gmail.com</p>
+                  <p>
+                    <strong>LinkedIn:</strong>
+                    <a href="#LinkedIn" class="texto-primario"
+                      >Anderson LinkedIn</a
+                    >
+                  </p>
+                  <p>
+                    <strong>GitHub:</strong>
+                    <a href="#Github" class="texto-primario">Anderson GitHub</a>
+                  </p>
+                </div>
+              </div>
+
+              <div class="cartao">
+                <h3 class="cartao__titulo">Redes Sociais</h3>
+                <div class="cartao__conteudo">
+                  <div class="destaque__acoes">
+                    <a href="#LinkedIn" class="botao botao--secundario"
+                      >LinkedIn</a
+                    >
+                    <a href="#Github" class="botao botao--secundario">GitHub</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <!-- Footer -->
+      <footer class="rodape">
+        <div class="rodape__conteudo">
+          <p>&copy; 2025 Anderson. Todos os direitos reservados.</p>
+          <div class="rodape__links">
+            <a href="#sobre" class="rodape__link">Sobre</a>
+            <a href="#habilidades" class="rodape__link">Habilidades</a>
+            <a href="#projetos" class="rodape__link">Projetos</a>
+            <a href="#contato" class="rodape__link">Contato</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

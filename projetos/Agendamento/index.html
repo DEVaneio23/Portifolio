@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <!-- Meta tags para SEO e responsividade -->
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content="Sistema de Agendamento de Bancas - PPGD"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PPGD - Sistema de Agendamento</title>
+
+    <!-- Fontes externas: Inter (Google Fonts) e Font Awesome para ícones -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+
+    <!-- Estilos CSS inline - definem o design visual da página -->
+    <style>
+      /* ===========================================================================
+       VARIÁVEIS CSS - PALETA DE CORES E CONFIGURAÇÕES GLOBAIS
+       =========================================================================== */
+      :root {
+        --primary: #59110b; /* Vermelho escuro principal */
+        --secondary: #7f1c14; /* Vermelho médio secundário */
+        --accent: #9f2e1c; /* Vermelho claro de destaque */
+        --text: #333; /* Cor do texto principal */
+        --text-light: #666; /* Cor do texto secundário */
+        --white: #ffffff; /* Branco */
+        --shadow: rgba(0, 0, 0, 0.1); /* Sombra padrão */
+        --shadow-hover: rgba(89, 17, 11, 0.15); /* Sombra no hover */
+        --border: #e1e5e9; /* Borda padrão */
+        --bg-light: #f8fafc; /* Fundo claro */
+      }
+
+      /* ===========================================================================
+       RESET CSS - NORMALIZAÇÃO DOS ELEMENTOS
+       =========================================================================== */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* ===========================================================================
+       ESTILOS DO BODY - FUNDO E TIPOGRAFIA BASE
+       =========================================================================== */
+      body {
+        font-family: "Inter", sans-serif;
+        line-height: 1.6;
+        color: var(--text);
+        background: linear-gradient(
+          135deg,
+          var(--primary) 0%,
+          var(--secondary) 100%
+        );
+        min-height: 100vh;
+      }
+
+      /* ===========================================================================
+       HEADER - CABEÇALHO FIXO COM NAVEGAÇÃO
+       =========================================================================== */
+      header {
+        background: rgba(255, 255, 255, 0.95);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 2px 20px var(--shadow);
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+      }
+
+      .header {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 1rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      /* Logo/título do PPGD */
+      .header h1 {
+        color: var(--primary);
+        font-size: 1.8rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .header h1 i {
+        color: var(--secondary);
+      }
+
+      /* Menu de navegação */
+      nav ul {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+        align-items: center;
+      }
+
+      nav a {
+        text-decoration: none;
+        color: var(--primary);
+        font-weight: 500;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+      }
+
+      nav a:hover {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: var(--white);
+        transform: translateY(-2px);
+      }
+
+      /* Botão especial do relatório */
+      .btn-relatorio {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: var(--white) !important;
+        padding: 0.75rem 1.5rem !important;
+        border-radius: 25px !important;
+        box-shadow: 0 4px 15px var(--shadow-hover);
+      }
+
+      .btn-relatorio:hover {
+        transform: translateY(-3px) !important;
+        box-shadow: 0 6px 20px var(--shadow-hover) !important;
+      }
+
+      /* Botão do portfólio */
+      .btn-portfolio {
+        background: linear-gradient(135deg, var(--accent), #6a0d0d);
+        color: var(--white) !important;
+        padding: 0.75rem 1.5rem !important;
+        border-radius: 25px !important;
+        box-shadow: 0 4px 15px var(--shadow-hover);
+      }
+
+      .btn-portfolio:hover {
+        transform: translateY(-3px) !important;
+        box-shadow: 0 6px 20px var(--shadow-hover) !important;
+      }
+
+      /* ===========================================================================
+       CONTEÚDO PRINCIPAL - SEÇÃO HERO E CARDS DOS PROGRAMAS
+       =========================================================================== */
+      main {
+        margin-top: 80px; /* Espaço para o header fixo */
+        padding: 2rem;
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      /* Seção hero com título e descrição principal */
+      .hero-section {
+        text-align: center;
+        margin-bottom: 4rem;
+        color: var(--white);
+      }
+
+      .hero-section h1 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .hero-section p {
+        font-size: 1.3rem;
+        opacity: 0.9;
+        max-width: 600px;
+        margin: 0 auto 2rem;
+      }
+
+      /* Container dos cards dos programas (Mestrado e Doutorado) */
+      .programs-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+        gap: 2rem;
+        margin-bottom: 3rem;
+      }
+
+      /* Cards individuais dos programas */
+      .program-card {
+        background: rgba(255, 255, 255, 0.95);
+        -webkit-backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 2.5rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        animation: fadeInUp 0.6s ease-out;
+      }
+
+      .program-card:nth-child(2) {
+        animation-delay: 0.2s; /* Animação escalonada para o segundo card */
+      }
+
+      /* Barra colorida no topo dos cards */
+      .program-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(
+          90deg,
+          var(--primary),
+          var(--secondary),
+          var(--accent)
+        );
+      }
+
+      .program-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      }
+
+      /* Cabeçalho do card com ícone e título */
+      .program-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      /* Ícones circulares dos programas */
+      .program-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: var(--white);
+        position: relative;
+        overflow: hidden;
+        border: 2px solid rgba(255, 255, 255, 0.25);
+        box-shadow: inset 0 6px 12px rgba(255, 255, 255, 0.1),
+          inset 0 -8px 14px rgba(0, 0, 0, 0.2), 0 8px 18px rgba(0, 0, 0, 0.25);
+      }
+      .program-icon i {
+        position: relative;
+        z-index: 2;
+        font-size: 2.2rem;
+        line-height: 1;
+        color: #ffffff;
+        filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.35));
+      }
+
+      /* Badge sobreposto com ícone temático */
+      .icon-badge {
+        position: absolute;
+        right: -4px;
+        bottom: -4px;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--white);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+        border: 2px solid rgba(255, 255, 255, 0.6);
+        z-index: 1;
+      }
+      .mestrado-badge {
+        background: linear-gradient(135deg, var(--secondary), var(--accent));
+      }
+      .doutorado-badge {
+        background: linear-gradient(135deg, var(--accent), #6a0d0d);
+      }
+      .icon-badge i {
+        font-size: 0.75rem;
+      }
+
+      .mestrado-icon {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+      }
+
+      .doutorado-icon {
+        background: linear-gradient(135deg, var(--secondary), var(--accent));
+      }
+
+      /* Efeito de brilho/reflexo e anel sutil animado nas "bolas" */
+      .program-icon::before {
+        content: "";
+        position: absolute;
+        top: 6%;
+        left: 12%;
+        width: 72%;
+        height: 72%;
+        border-radius: 50%;
+        background: radial-gradient(
+          ellipse at top left,
+          rgba(255, 255, 255, 0.55),
+          rgba(255, 255, 255, 0.15) 35%,
+          rgba(255, 255, 255, 0) 65%
+        );
+        filter: blur(1px);
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .program-icon::after {
+        content: "";
+        position: absolute;
+        inset: -2px;
+        border-radius: 50%;
+        background: conic-gradient(
+          from 0deg,
+          rgba(255, 255, 255, 0) 0deg,
+          rgba(255, 255, 255, 0.35) 40deg,
+          rgba(255, 255, 255, 0) 80deg,
+          rgba(255, 255, 255, 0) 360deg
+        );
+        animation: orbSpin 8s linear infinite;
+        mix-blend-mode: soft-light;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      /* Rótulos M/D sobrepostos para identificação clara */
+      .icon-label {
+        position: absolute;
+        right: 1px;
+        bottom: 1px;
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        font-size: 1.15rem;
+        color: #fff;
+        border: 2px solid rgba(255, 255, 255, 0.7);
+        box-shadow: 0 6px 14px rgba(0, 0, 0, 0.32);
+        background: rgba(0, 0, 0, 0.25);
+        backdrop-filter: blur(2px);
+        -webkit-backdrop-filter: blur(2px);
+        z-index: 3;
+        pointer-events: none;
+      }
+      .mestrado-label {
+        background: linear-gradient(135deg, var(--secondary), var(--accent));
+      }
+      .doutorado-label {
+        background: linear-gradient(135deg, var(--accent), #6a0d0d);
+      }
+
+      .program-card:hover .program-icon {
+        box-shadow: inset 0 8px 14px rgba(255, 255, 255, 0.12),
+          inset 0 -10px 18px rgba(0, 0, 0, 0.22),
+          0 10px 24px rgba(0, 0, 0, 0.28), 0 0 0 6px rgba(255, 255, 255, 0.06);
+      }
+
+      /* Títulos dos programas */
+      .program-title {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--text);
+        margin: 0;
+      }
+
+      .program-subtitle {
+        color: var(--text-light);
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      /* Descrição dos programas */
+      .program-description {
+        color: var(--text-light);
+        font-size: 1rem;
+        line-height: 1.7;
+        margin-bottom: 2rem;
+      }
+
+      /* Lista de características dos programas */
+      .checklist {
+        list-style: none;
+        margin-bottom: 2rem;
+      }
+
+      .checklist li {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 0.75rem;
+        color: var(--text-light);
+        font-size: 0.95rem;
+      }
+
+      .checklist li::before {
+        content: "✓";
+        color: var(--primary);
+        font-weight: bold;
+        font-size: 1.1rem;
+      }
+
+      /* Botões de call-to-action */
+      .cta-button {
+        display: inline-block;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: var(--white);
+        text-decoration: none;
+        padding: 1rem 2rem;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px var(--shadow-hover);
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* Efeito de brilho no hover dos botões */
+      .cta-button::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: left 0.5s;
+      }
+
+      .cta-button:hover::before {
+        left: 100%;
+      }
+
+      .cta-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px var(--shadow-hover);
+      }
+
+      /* ===========================================================================
+       SEÇÃO DE ACESSO PARA PROFESSORES
+       =========================================================================== */
+      .professor-access-section {
+        margin-top: 3rem;
+        text-align: center;
+      }
+
+      .professor-card {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: var(--white);
+        border-radius: 20px;
+        padding: 3rem;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s ease;
+        animation: fadeInUp 0.8s ease-out;
+        animation-delay: 0.4s;
+        animation-fill-mode: both;
+      }
+
+      .professor-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+      }
+
+      .professor-header {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        margin-bottom: 1.5rem;
+        justify-content: center;
+      }
+
+      .professor-icon {
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        width: 80px;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+      }
+
+      .professor-icon i {
+        font-size: 2.5rem;
+        color: var(--white);
+      }
+
+      .professor-card h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .professor-card p {
+        font-size: 1.1rem;
+        opacity: 0.9;
+        margin-bottom: 1rem;
+      }
+
+      .professor-description {
+        font-size: 1.2rem;
+        line-height: 1.6;
+        max-width: 600px;
+        margin: 0 auto 2rem;
+        opacity: 0.95;
+      }
+
+      .professor-button {
+        background: rgba(255, 255, 255, 0.2);
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        color: var(--white);
+        font-size: 1.2rem;
+        padding: 1rem 2rem;
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
+      }
+
+      .professor-button:hover {
+        background: rgba(255, 255, 255, 0.3);
+        border-color: rgba(255, 255, 255, 0.5);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      }
+
+      /* ===========================================================================
+       FOOTER - RODAPÉ COM INFORMAÇÕES DE CONTATO
+       =========================================================================== */
+      .footer {
+        background: rgba(89, 17, 11, 0.9);
+        color: var(--white);
+        padding: 2rem 0;
+        margin-top: 4rem;
+      }
+
+      .footer-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        text-align: center;
+      }
+
+      .footer ul {
+        list-style: none;
+        margin-bottom: 1rem;
+      }
+
+      .footer li {
+        margin-bottom: 0.5rem;
+        opacity: 0.9;
+      }
+
+      .footer p {
+        opacity: 0.7;
+        font-size: 0.9rem;
+      }
+
+      /* ===========================================================================
+       ANIMAÇÕES CSS
+       =========================================================================== */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes orbSpin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* ===========================================================================
+       DESIGN RESPONSIVO - ADAPTAÇÃO PARA DIFERENTES TAMANHOS DE TELA
+       =========================================================================== */
+      @media (max-width: 768px) {
+        .header {
+          padding: 1rem;
+          flex-direction: column;
+          gap: 1rem;
+        }
+
+        nav ul {
+          gap: 1rem;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+
+        main {
+          margin-top: 140px;
+        }
+
+        .hero-section h1 {
+          font-size: 2.5rem;
+        }
+
+        .hero-section p {
+          font-size: 1.1rem;
+        }
+
+        .programs-container {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+        }
+
+        .program-card {
+          padding: 2rem;
+        }
+
+        .program-title {
+          font-size: 1.5rem;
+        }
+
+        .program-header {
+          flex-direction: column;
+          text-align: center;
+        }
+      }
+
+      @media (max-width: 480px) {
+        main {
+          margin-top: 160px;
+          padding: 1rem;
+        }
+
+        .hero-section h1 {
+          font-size: 2rem;
+        }
+
+        .program-card {
+          padding: 1.5rem;
+        }
+
+        .cta-button {
+          padding: 0.875rem 1.5rem;
+          font-size: 1rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ===========================================================================
+       HEADER - CABEÇALHO COM LOGO E MENU DE NAVEGAÇÃO
+       =========================================================================== -->
+    <header>
+      <div class="header">
+        <!-- Logo/título do PPGD -->
+        <h1>
+          <i class="fas fa-graduation-cap"></i>
+          PPGD FADISP
+        </h1>
+
+        <!-- Menu de navegação principal -->
+        <nav>
+          <ul class="header-menu">
+            <li>
+              <a href="index.html"><i class="fas fa-home"></i> Início</a>
+            </li>
+            <li>
+              <a href="pgs/agendar.html"
+                ><i class="fas fa-calendar-plus"></i> Agendar Banca</a
+              >
+            </li>
+            <li>
+              <a href="pgs/suporte.html"
+                ><i class="fas fa-headset"></i> Suporte</a
+              >
+            </li>
+            <li>
+              <a href="relatório/relatorio.html" class="btn-relatorio"
+                ><i class="fas fa-chart-line"></i> Relatório</a
+              >
+            </li>
+            <li>
+              <a href="/portifolio/index.html" class="btn-portfolio"
+                ><i class="fas fa-home"></i> Portfólio</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ===========================================================================
+       CONTEÚDO PRINCIPAL - SEÇÃO HERO E CARDS DOS PROGRAMAS
+       =========================================================================== -->
+    <main>
+      <!-- Seção hero com título e descrição principal -->
+      <section class="hero-section">
+        <h1>Sistema de Agendamento de Bancas</h1>
+        <p>
+          Gerencie suas bancas de qualificação e defesa de forma simples e
+          eficiente
+        </p>
+      </section>
+
+      <!-- Container dos cards dos programas de pós-graduação -->
+      <div class="programs-container">
+        <!-- Card do programa de Mestrado -->
+        <div class="program-card">
+          <div class="program-header">
+            <div
+              class="program-icon mestrado-icon"
+              title="Mestrado"
+              aria-label="Mestrado"
+            >
+              <i class="fas fa-user-graduate" aria-hidden="true"></i>
+            </div>
+            <div>
+              <h2 class="program-title">Mestrado</h2>
+              <p class="program-subtitle">
+                Programa de Pós-Graduação em Direito
+              </p>
+            </div>
+          </div>
+
+          <p class="program-description">
+            Agende sua banca de qualificação ou defesa para o programa de
+            Mestrado. O programa tem duração de 24 meses e exige dedicação
+            exclusiva.
+          </p>
+
+          <!-- Lista de características do mestrado -->
+          <ul class="checklist">
+            <li>Documentação completa do projeto</li>
+            <li>Qualificação após 12 meses</li>
+            <li>Defesa após 24 meses</li>
+            <li>1 membro externo na banca</li>
+            <li>Artigo científico publicado</li>
+          </ul>
+
+          <!-- Botão de call-to-action para agendamento -->
+          <a href="pgs/agendar.html" class="cta-button">
+            <i class="fas fa-calendar-check"></i> Agendar Banca
+          </a>
+        </div>
+
+        <!-- Card do programa de Doutorado -->
+        <div class="program-card">
+          <div class="program-header">
+            <div
+              class="program-icon doutorado-icon"
+              title="Doutorado"
+              aria-label="Doutorado"
+            >
+              <i class="fas fa-scroll" aria-hidden="true"></i>
+            </div>
+            <div>
+              <h2 class="program-title">Doutorado</h2>
+              <p class="program-subtitle">
+                Programa de Pós-Graduação em Direito
+              </p>
+            </div>
+          </div>
+
+          <p class="program-description">
+            Agende sua banca de qualificação ou defesa para o programa de
+            Doutorado. O programa tem duração de 48 meses e exige dedicação
+            exclusiva.
+          </p>
+
+          <!-- Lista de características do doutorado -->
+          <ul class="checklist">
+            <li>Documentação completa do projeto</li>
+            <li>Qualificação após 12 meses</li>
+            <li>Defesa após 48 meses</li>
+            <li>2 membros externos na banca</li>
+            <li>2 artigos científicos publicados</li>
+            <li>Estágio de docência obrigatório</li>
+          </ul>
+
+          <!-- Botão de call-to-action para agendamento -->
+          <a href="pgs/agendar.html" class="cta-button">
+            <i class="fas fa-calendar-check"></i> Agendar Banca
+          </a>
+        </div>
+      </div>
+
+      <!-- Seção de acesso para professores -->
+      <section class="professor-access-section">
+        <div class="professor-card">
+          <div class="professor-header">
+            <div class="professor-icon">
+              <i class="fas fa-chalkboard-teacher"></i>
+            </div>
+            <div>
+              <h2>Área do Professor</h2>
+              <p>Acesse o sistema para gerenciar bancas e orientações</p>
+            </div>
+          </div>
+
+          <p class="professor-description">
+            Professores e membros de bancas podem acessar o sistema para
+            visualizar agendamentos, gerenciar participações e acompanhar o
+            progresso dos alunos.
+          </p>
+
+          <a
+            href="pgs/login-professor.html"
+            class="cta-button professor-button"
+          >
+            <i class="fas fa-sign-in-alt"></i> Acessar Sistema
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- ===========================================================================
+       FOOTER - RODAPÉ COM INFORMAÇÕES DE CONTATO
+       =========================================================================== -->
+    <footer class="footer">
+      <div class="footer-container">
+        <!-- Informações de contato para suporte -->
+        <ul>
+          <li>
+            <i class="fas fa-phone"></i> Contato de suporte: (11) 99999-9999
+          </li>
+          <li>
+            <i class="fas fa-envelope"></i> E-mail de suporte:
+            suporte@ppgd.edu.br
+          </li>
+        </ul>
+        <!-- Copyright -->
+        <p>© 2025 - Todos os direitos reservados</p>
+      </div>
+    </footer>
+  </body>
+</html>

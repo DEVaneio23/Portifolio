@@ -1,0 +1,27 @@
+{
+  "name": "dashboard-financeiro",
+  "version": "1.0.0",
+  "description": "Dashboard financeiro responsivo com funcionalidades offline",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx http-server . -p 3000 -o",
+    "dev": "npx live-server . --port=3000",
+    "prepare:vendor": "node scripts/fetch-vendor.js",
+    "vercel-build": "npm run prepare:vendor && echo 'Build para Vercel - arquivos estáticos prontos'"
+  },
+  "keywords": [
+    "financeiro",
+    "dashboard",
+    "pwa",
+    "offline"
+  ],
+  "author": "Seu Nome",
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "^14.1.1",
+    "live-server": "^1.2.2"
+  },
+  "dependencies": {
+    
+  }
+}

@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content="Dashboard do Professor - Sistema de Agendamento de Bancas"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard Professor - PPGD</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+
+    <style>
+      /* ===========================================================================
+       VARIÁVEIS CSS - PALETA DE CORES E CONFIGURAÇÕES GLOBAIS
+       =========================================================================== */
+      :root {
+        --primary: #59110b; /* Vermelho escuro principal */
+        --secondary: #7f1c14; /* Vermelho médio secundário */
+        --accent: #9f2e1c; /* Vermelho claro de destaque */
+        --text: #333; /* Cor do texto principal */
+        --text-light: #666; /* Cor do texto secundário */
+        --white: #ffffff; /* Branco */
+        --shadow: rgba(0, 0, 0, 0.1); /* Sombra padrão */
+        --shadow-hover: rgba(89, 17, 11, 0.15); /* Sombra no hover */
+        --border: #e1e5e9; /* Borda padrão */
+        --bg-light: #f8fafc; /* Fundo claro */
+        --success: #16a34a; /* Verde para sucesso */
+        --error: #dc2626; /* Vermelho para erro */
+        --warning: #d97706; /* Laranja para aviso */
+      }
+
+      /* ===========================================================================
+       RESET CSS - NORMALIZAÇÃO DOS ELEMENTOS
+       =========================================================================== */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* ===========================================================================
+       ESTILOS DO BODY - FUNDO E TIPOGRAFIA BASE
+       =========================================================================== */
+      body {
+        font-family: "Inter", sans-serif;
+        line-height: 1.6;
+        color: var(--text);
+        background: linear-gradient(
+          135deg,
+          var(--primary) 0%,
+          var(--secondary) 100%
+        );
+        min-height: 100vh;
+      }
+
+      /* ===========================================================================
+       HEADER - CABEÇALHO FIXO COM NAVEGAÇÃO
+       =========================================================================== */
+      header {
+        background: rgba(255, 255, 255, 0.95);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 2px 20px var(--shadow);
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+      }
+
+      .header {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 1rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      /* Logo/título do PPGD */
+      .header h1 {
+        color: var(--primary);
+        font-size: 1.8rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .header h1 i {
+        color: var(--secondary);
+      }
+
+      /* Menu de navegação */
+      nav ul {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+        align-items: center;
+      }
+
+      nav a {
+        text-decoration: none;
+        color: var(--primary);
+        font-weight: 500;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+      }
+
+      nav a:hover {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: var(--white);
+        transform: translateY(-2px);
+      }
+
+      .btn-relatorio {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: var(--white) !important;
+        padding: 0.75rem 1.5rem !important;
+        border-radius: 25px !important;
+        box-shadow: 0 4px 15px var(--shadow-hover);
+      }
+
+      .btn-relatorio:hover {
+        transform: translateY(-3px) !important;
+        box-shadow: 0 6px 20px var(--shadow-hover) !important;
+      }
+
+      /* ===========================================================================
+       CONTEÚDO PRINCIPAL - DASHBOARD DO PROFESSOR
+       =========================================================================== */
+      main {
+        margin-top: 80px; /* Espaço para o header fixo */
+        padding: 2rem;
+        min-height: calc(100vh - 80px);
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .dashboard-header {
+        background: var(--white);
+        border-radius: 20px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 10px 30px var(--shadow);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .dashboard-header::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%2359110b" opacity="0.05"/><circle cx="75" cy="75" r="1" fill="%2359110b" opacity="0.05"/><circle cx="50" cy="10" r="0.5" fill="%2359110b" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+        opacity: 0.3;
+      }
+
+      .user-info {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .user-avatar {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--white);
+        font-size: 2rem;
+        font-weight: 700;
+        box-shadow: 0 8px 25px var(--shadow-hover);
+      }
+
+      .user-details h2 {
+        color: var(--primary);
+        font-size: 1.8rem;
+        margin-bottom: 0.5rem;
+        font-weight: 700;
+      }
+
+      .user-details p {
+        color: var(--text-light);
+        margin-bottom: 0.25rem;
+        font-size: 1rem;
+      }
+
+      .logout-btn {
+        margin-left: auto;
+        background: var(--error);
+        color: var(--white);
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 25px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-family: inherit;
+      }
+
+      .logout-btn:hover {
+        background: #b91c1c;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(220, 38, 38, 0.3);
+      }
+
+      .estatisticas {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .stat-card {
+        background: var(--white);
+        border-radius: 16px;
+        padding: 2rem;
+        box-shadow: 0 10px 30px var(--shadow);
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
+      }
+
+      .stat-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+      }
+
+      .stat-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px var(--shadow-hover);
+      }
+
+      .stat-card i {
+        font-size: 2.5rem;
+        color: var(--primary);
+        margin-bottom: 1rem;
+      }
+
+      .stat-card .numero {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--primary);
+        margin-bottom: 0.5rem;
+      }
+
+      .stat-card .label {
+        color: var(--text-light);
+        font-size: 1rem;
+        font-weight: 500;
+      }
+
+      .filtros {
+        background: var(--white);
+        border-radius: 16px;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 10px 30px var(--shadow);
+      }
+
+      .filtros h3 {
+        color: var(--primary);
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+        font-weight: 600;
+      }
+
+      .filtros-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+        align-items: end;
+      }
+
+      .filtro-grupo {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .filtro-grupo label {
+        color: var(--text);
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+        font-size: 0.9rem;
+      }
+
+      .filtro-grupo select,
+      .filtro-grupo input {
+        padding: 0.75rem;
+        border: 2px solid var(--border);
+        border-radius: 8px;
+        font-size: 0.9rem;
+        transition: all 0.3s ease;
+        background: var(--white);
+        font-family: inherit;
+      }
+
+      .filtro-grupo select:focus,
+      .filtro-grupo input:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(89, 17, 11, 0.1);
+      }
+
+      .bancas-container {
+        background: var(--white);
+        border-radius: 20px;
+        padding: 2rem;
+        box-shadow: 0 10px 30px var(--shadow);
+      }
+
+      .bancas-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .bancas-header h3 {
+        color: var(--primary);
+        font-size: 1.5rem;
+        font-weight: 600;
+      }
+
+      .bancas-grid {
+        display: grid;
+        gap: 1.5rem;
+      }
+
+      .banca-card {
+        background: var(--bg-light);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 1.5rem;
+        transition: all 0.3s ease;
+      }
+
+      .banca-card:hover {
+        box-shadow: 0 8px 25px var(--shadow);
+        transform: translateY(-2px);
+      }
+
+      .banca-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 1rem;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .protocolo {
+        background: var(--primary);
+        color: var(--white);
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        font-family: "Courier New", monospace;
+      }
+
+      .status {
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+
+      .status.confirmada {
+        background: var(--success);
+        color: var(--white);
+      }
+
+      .status.pendente {
+        background: var(--warning);
+        color: var(--white);
+      }
+
+      .status.cancelada {
+        background: var(--error);
+        color: var(--white);
+      }
+
+      .banca-info {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .info-item {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .info-item label {
+        color: var(--text-light);
+        font-size: 0.8rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 0.25rem;
+      }
+
+      .info-item span {
+        color: var(--text);
+        font-weight: 600;
+        font-size: 0.95rem;
+      }
+
+      .banca-acoes {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .btn-detalhes,
+      .btn-calendario {
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.9rem;
+        font-family: inherit;
+      }
+
+      .btn-detalhes {
+        background: var(--primary);
+        color: var(--white);
+      }
+
+      .btn-detalhes:hover {
+        background: var(--secondary);
+        transform: translateY(-2px);
+      }
+
+      .btn-calendario {
+        background: var(--bg-light);
+        color: var(--text);
+        border: 2px solid var(--border);
+      }
+
+      .btn-calendario:hover {
+        background: var(--white);
+        border-color: var(--primary);
+        transform: translateY(-2px);
+      }
+
+      .no-results {
+        text-align: center;
+        padding: 3rem;
+        color: var(--text-light);
+      }
+
+      .no-results i {
+        font-size: 3rem;
+        color: var(--border);
+        margin-bottom: 1rem;
+      }
+
+      .no-results h3 {
+        color: var(--text-light);
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+      }
+
+      .no-results p {
+        color: var(--text-light);
+        font-size: 0.95rem;
+      }
+
+      /* Responsividade */
+      @media (max-width: 768px) {
+        main {
+          padding: 1rem;
+          margin-top: 70px;
+        }
+
+        .dashboard-header {
+          padding: 1.5rem;
+        }
+
+        .user-info {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .logout-btn {
+          margin: 1rem 0 0 0;
+        }
+
+        .estatisticas {
+          grid-template-columns: 1fr;
+        }
+
+        .filtros-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .bancas-header {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .banca-header {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .banca-info {
+          grid-template-columns: 1fr;
+        }
+
+        .banca-acoes {
+          justify-content: center;
+        }
+
+        .header {
+          padding: 1rem;
+        }
+
+        .header h1 {
+          font-size: 1.5rem;
+        }
+
+        nav ul {
+          gap: 1rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .dashboard-header {
+          padding: 1rem;
+        }
+
+        .user-avatar {
+          width: 60px;
+          height: 60px;
+          font-size: 1.5rem;
+        }
+
+        .user-details h2 {
+          font-size: 1.5rem;
+        }
+
+        .estatisticas {
+          gap: 1rem;
+        }
+
+        .stat-card {
+          padding: 1.5rem;
+        }
+
+        .stat-card .numero {
+          font-size: 2rem;
+        }
+
+        .bancas-container {
+          padding: 1.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="header">
+        <h1>
+          <i class="fas fa-graduation-cap"></i>
+          PPGD FADISP
+        </h1>
+        <nav>
+          <ul class="header-menu">
+            <li>
+              <a href="../index.html"><i class="fas fa-home"></i> Início</a>
+            </li>
+            <li>
+              <a href="agendar.html"
+                ><i class="fas fa-calendar-plus"></i> Agendar Banca</a
+              >
+            </li>
+            <li>
+              <a href="suporte.html"><i class="fas fa-headset"></i> Suporte</a>
+            </li>
+            <li>
+              <a href="../relatório/relatorio.html" class="btn-relatorio"
+                ><i class="fas fa-chart-line"></i> Relatório</a
+              >
+            </li>
+            <li>
+              <a href="../portifolio/index.html" class="btn-portfolio"
+                ><i class="fas fa-home"></i> Portfólio</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <div class="container">
+        <!-- Header do Dashboard -->
+        <div class="dashboard-header">
+          <div class="user-info">
+            <div class="user-avatar">
+              <i class="fas fa-user"></i>
+            </div>
+            <div class="user-details">
+              <h2 id="user-info">Prof. Dr. Ana Costa</h2>
+              <p><strong>E-mail:</strong> ana.costa@ppgd.edu.br</p>
+              <p><strong>Departamento:</strong> Direito Constitucional</p>
+            </div>
+            <button class="logout-btn" id="btn-logout">
+              <i class="fas fa-sign-out-alt"></i>
+              Sair
+            </button>
+          </div>
+        </div>
+
+        <!-- Estatísticas -->
+        <div class="estatisticas" id="estatisticas-container">
+          <div class="stat-card">
+            <i class="fas fa-calendar-check"></i>
+            <div class="numero">12</div>
+            <div class="label">Total de Bancas</div>
+          </div>
+          <div class="stat-card">
+            <i class="fas fa-check-circle"></i>
+            <div class="numero">8</div>
+            <div class="label">Confirmadas</div>
+          </div>
+          <div class="stat-card">
+            <i class="fas fa-clock"></i>
+            <div class="numero">4</div>
+            <div class="label">Pendentes</div>
+          </div>
+        </div>
+
+        <!-- Filtros -->
+        <div class="filtros">
+          <h3>Filtros</h3>
+          <div class="filtros-grid">
+            <div class="filtro-grupo">
+              <label for="filtro-status">Status</label>
+              <select id="filtro-status">
+                <option value="">Todos os Status</option>
+                <option value="confirmada">Confirmada</option>
+                <option value="pendente">Pendente</option>
+                <option value="cancelada">Cancelada</option>
+              </select>
+            </div>
+            <div class="filtro-grupo">
+              <label for="filtro-tipo">Tipo</label>
+              <select id="filtro-tipo">
+                <option value="">Todos os Tipos</option>
+                <option value="mestrado">Mestrado</option>
+                <option value="doutorado">Doutorado</option>
+              </select>
+            </div>
+            <div class="filtro-grupo">
+              <label for="filtro-data">Data</label>
+              <input type="date" id="filtro-data" />
+            </div>
+            <div class="filtro-grupo">
+              <label for="busca-input">Buscar</label>
+              <input
+                type="text"
+                id="busca-input"
+                placeholder="Nome do aluno..."
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Lista de Bancas -->
+        <div class="bancas-container">
+          <div class="bancas-header">
+            <h3>Bancas Agendadas</h3>
+          </div>
+          <div class="bancas-grid" id="bancas-container">
+            <!-- As bancas serão carregadas dinamicamente via JavaScript -->
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="../js/dashboard-professor.js"></script>
+  </body>
+</html>

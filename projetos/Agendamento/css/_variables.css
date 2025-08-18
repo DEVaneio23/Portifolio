@@ -1,0 +1,144 @@
+/* 
+ * ===========================================================================
+ * VARIÁVEIS CSS GLOBAIS - SISTEMA DE AGENDAMENTO DE BANCAS
+ * ===========================================================================
+ * 
+ * Este arquivo contém todas as variáveis CSS globais usadas no projeto.
+ * As variáveis são organizadas em categorias para facilitar a manutenção
+ * e garantir consistência visual em todo o sistema.
+ * 
+ * CATEGORIAS:
+ * 1. Cores - Paleta de cores principal e estados
+ * 2. Tipografia - Fontes e tamanhos de texto
+ * 3. Espaçamentos - Margens, paddings e gaps
+ * 4. Bordas e Sombras - Raio de borda e efeitos de sombra
+ * 5. Transições - Durações e tipos de animação
+ * 6. Outras - Larguras máximas e configurações gerais
+ * ===========================================================================
+ */
+
+:root {
+  /* 
+   * 1. PALETA DE CORES - SISTEMA DE CORES CONSISTENTE
+   * -----------------------------------------------------------------------
+   * As cores são organizadas por função:
+   * - Cores principais: identidade visual da FADISP
+   * - Cores de estado: sucesso, erro, aviso
+   * - Cores de fundo: diferentes níveis de background
+   * - Cores de texto: hierarquia de legibilidade
+   */
+  
+  /* Cores principais da identidade visual */
+  --cor-principal: #59110b;        /* Vermelho escuro - cor principal da FADISP */
+  --cor-secundaria: #7f1c14;       /* Vermelho médio - cor secundária */
+  --cor-destaque: #28a745;         /* Verde - para sucesso e validação positiva */
+  --cor-aviso: #f39c12;            /* Amarelo/laranja - para avisos e alertas */
+  --cor-erro: #dc3545;             /* Vermelho - para erros e validações negativas */
+  --cor-hover: #9f2e1c;            /* Vermelho claro - para efeitos hover */
+  --cor-hover-light: #d9d9d9;      /* Cinza claro - para hover em elementos claros */
+  
+  /* Cores de fundo - diferentes níveis de profundidade */
+  --cor-fundo-principal: #f5f5f5;  /* Fundo principal das páginas */
+  --cor-fundo-branco: #ffffff;     /* Branco puro para cards e elementos */
+  --cor-fundo-geral: #eae8e3;      /* Fundo geral com tom levemente amarelado */
+  --cor-fundo-card: #f9f9f9;       /* Fundo específico para cards */
+  --cor-fundo-hover: #f1f1f1;      /* Fundo para estados hover */
+  
+  /* Cores de alerta - para feedback visual */
+  --cor-alerta-bg: #f8d7da;        /* Fundo de alerta de erro */
+  --cor-alerta-borda: #f5c6cb;     /* Borda de alerta de erro */
+  --cor-sucesso-bg: #d4edda;       /* Fundo de alerta de sucesso */
+  --cor-sucesso-borda: #c3e6cb;    /* Borda de alerta de sucesso */
+  --cor-aviso-bg: #fff3cd;         /* Fundo de alerta de aviso */
+  --cor-aviso-borda: #ffeeba;      /* Borda de alerta de aviso */
+  
+  /* Cores de texto - hierarquia de legibilidade */
+  --cor-texto-principal: #000000;  /* Texto principal - preto */
+  --cor-texto-claro: #ffffff;      /* Texto sobre fundos escuros */
+  --cor-texto-escuro: #2c3e50;     /* Azul escuro - texto legível e elegante */
+  --cor-texto-cinza: #6c757d;      /* Cinza - texto secundário */
+  --cor-texto-suave: #333333;      /* Cinza escuro - texto suave */
+  --cor-borda: #dee2e6;            /* Cinza claro - para bordas sutis */
+  --cor-sombra: rgba(0, 0, 0, 0.1); /* Sombra padrão com transparência */
+
+  /* 
+   * 2. SISTEMA DE TIPOGRAFIA - FONTES E TAMANHOS
+   * -----------------------------------------------------------------------
+   * Define as fontes e tamanhos de texto para garantir consistência
+   * e hierarquia visual em todo o sistema.
+   */
+  
+  /* Famílias de fontes */
+  --fonte-principal: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --fonte-secundaria: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  
+  /* Tamanhos de fonte - sistema escalonado */
+  --font-grande: 2rem;      /* 32px - Títulos principais */
+  --font-titulo: 1.8rem;    /* 28.8px - Títulos de seção */
+  --font-subtitulo: 1.3rem; /* 20.8px - Subtítulos */
+  --font-padrao: 1rem;      /* 16px - Texto padrão */
+  --font-pequena: 0.9rem;   /* 14.4px - Texto pequeno */
+  --font-alerta: 0.95rem;   /* 15.2px - Texto de alertas */
+  --font-contador: 0.85rem; /* 13.6px - Contadores e informações */
+  --font-link: 0.95rem;     /* 15.2px - Links e navegação */
+
+  /* 
+   * 3. SISTEMA DE ESPAÇAMENTO - MARGENS, PADDINGS E GAPS
+   * -----------------------------------------------------------------------
+   * Define espaçamentos consistentes para criar ritmo visual
+   * e hierarquia de elementos na interface.
+   */
+  
+  /* Espaçamentos de container e layout */
+  --padding-container: 40px 20px;  /* Padding padrão dos containers principais */
+  --padding-card: 2rem;            /* 32px - Padding interno dos cards */
+  --padding-form: 2.5rem;          /* 40px - Padding dos formulários */
+  
+  /* Gaps para espaçamento entre elementos */
+  --gap-grande: 40px;              /* Espaçamento grande entre seções */
+  --gap-padrao: 20px;              /* Espaçamento padrão entre elementos */
+  --gap-pequeno: 15px;             /* Espaçamento pequeno entre itens */
+  --gap-mini: 8px;                 /* Espaçamento mínimo entre elementos */
+
+  /* 
+   * 4. BORDAS E SOMBRAS - EFEITOS VISUAIS
+   * -----------------------------------------------------------------------
+   * Define raios de borda e sombras para criar profundidade
+   * e hierarquia visual nos elementos da interface.
+   */
+  
+  /* Raios de borda - para cantos arredondados */
+  --radius-pequeno: 4px;           /* Bordas levemente arredondadas */
+  --radius-medio: 8px;             /* Bordas moderadamente arredondadas */
+  --radius-grande: 12px;           /* Bordas bem arredondadas */
+  
+  /* Sistema de sombras - diferentes níveis de profundidade */
+  --sombra-card: 0 10px 30px rgba(0, 0, 0, 0.08);    /* Sombra sutil para cards */
+  --sombra-botao: 0 2px 5px rgba(0, 0, 0, 0.15);     /* Sombra para botões */
+  --sombra-pesada: 0 6px 12px rgba(0, 0, 0, 0.2);    /* Sombra mais pronunciada */
+  --sombra-header: 0 4px 8px rgba(0, 0, 0, 0.1);     /* Sombra do cabeçalho */
+  --sombra-footer: 0 -4px 8px rgba(0, 0, 0, 0.1);    /* Sombra do rodapé */
+
+  /* 
+   * 5. TRANSFORMAÇÕES E ANIMAÇÕES - INTERATIVIDADE
+   * -----------------------------------------------------------------------
+   * Define durações e tipos de transição para criar
+   * experiências fluidas e responsivas.
+   */
+  
+  /* Durações de transição */
+  --transicao-rapida: 0.2s ease;   /* Transições rápidas para feedback imediato */
+  --transicao-padrao: 0.3s ease;   /* Transições padrão para mudanças normais */
+  --transicao-lenta: 0.5s ease;    /* Transições lentas para mudanças importantes */
+
+  /* 
+   * 6. CONFIGURAÇÕES GERAIS - LARGURAS E LIMITES
+   * -----------------------------------------------------------------------
+   * Define larguras máximas e outras configurações
+   * que afetam o layout geral do sistema.
+   */
+  
+  /* Larguras máximas para responsividade */
+  --largura-maxima: 1200px;        /* Largura máxima do conteúdo principal */
+  --largura-formulario: 800px;     /* Largura máxima dos formulários */
+}

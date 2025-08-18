@@ -1,0 +1,30 @@
+{
+  "name": "Dashboard Financeiro",
+  "short_name": "Finanças",
+  "description": "Dashboard financeiro responsivo com gráficos interativos",
+  "start_url": "/?utm_source=pwa&utm_medium=app",
+  "display": "standalone",
+  "background_color": "#667eea",
+  "theme_color": "#667eea",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCAwIDE5MiAxOTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxOTIiIGhlaWdodD0iMTkyIiByeD0iMjQiIGZpbGw9InVybCgjZ3JhZGllbnQpIi8+CjxnIGZpbGw9IndoaXRlIj4KPHBhdGggZD0iTTk2IDQ4QzY5LjQ5IDQ4IDQ4IDY5LjQ5IDQ4IDk2czIxLjQ5IDQ4IDQ4IDQ4IDQ4LTIxLjQ5IDQ4LTQ4UzEyMi41MSA0OCA5NiA0OHptMCA4MGMtMTcuNjcgMC0zMi0xNC4zMy0zMi0zMnMxNC4zMy0zMiAzMi0zMiAzMiAxNC4zMyAzMiAzMi0xNC4zMyAzMi0zMiAzMnoiLz4KPHBhdGggZD0iTTE0NCA5Nkg0OGMtOC44NCAwLTE2IDcuMTYtMTYgMTZ2MzJjMCA4Ljg0IDcuMTYgMTYgMTYgMTZoOTZjOC44NCAwIDE2LTcuMTYgMTYtMTZ2LTMyYzAtOC44NC03LjE2LTE2LTE2LTE2eiIvPgo8L2c+CjxkZWZzPgo8bGluZWFyR3JhZGllbnQgaWQ9ImdyYWRpZW50IiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+CjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiM2NjdlZWEiLz4KPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjNzY0YmEyIi8+CjwvbGluZWFyR3JhZGllbnQ+CjwvZGVmcz4KPC9zdmc+",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDUxMiA1MTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiByeD0iNjQiIGZpbGw9InVybCgjZ3JhZGllbnQpIi8+CjxnIGZpbGw9IndoaXRlIj4KPHBhdGggZD0iTTI1NiAxMjhDMTg1LjMxIDEyOCAxMjggMTg1LjMxIDEyOCAyNTZzNTcuMzEgMTI4IDEyOCAxMjggMTI4LTU3LjMxIDEyOC0xMjhTMzI2LjY5IDEyOCAyNTYgMTI4em0wIDIxM2MtNDcuMTIgMC04NS0zNy44OC04NS04NXMzNy44OC04NSA4NS04NSA4NSAzNy44OCA4NSA4NS0zNy44OCA4NS04NSA4NXoiLz4KPHBhdGggZD0iTTM4NCAyNTZIMTI4Yy0yMy41NiAwLTQyLjY3IDE5LjExLTQyLjY3IDQyLjY3djg1LjMzYzAgMjMuNTYgMTkuMTEgNDIuNjcgNDIuNjcgNDIuNjd2LTg1LjMzYzAtMjMuNTYtMTkuMTEtNDIuNjctNDIuNjctNDIuNjd6Ii8+CjwvZz4KPGRlZnM+CjxsaW5lYXJHcmFkaWVudCBpZD0iZ3JhZGllbnQiIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzY2N2VlYSIvPgo8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM3NjRiYTIiLz4KPC9saW5lYXJHcmFkaWVudD4KPC9kZWZzPgo8L3N2Zz4=",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["finance", "productivity", "business"],
+  "lang": "pt-BR",
+  "dir": "ltr",
+  "prefer_related_applications": false,
+  "related_applications": [],
+  "scope": "/"
+} 

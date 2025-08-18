@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate, max-age=0"
+    />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <meta name="theme-color" content="#667eea" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Dashboard Financeiro" />
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <title>Dashboard Financeiro</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCAwIDE5MiAxOTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxOTIiIGhlaWdodD0iMTkyIiByeD0iMjQiIGZpbGw9InVybCgjZ3JhZGllbnQpIi8+CjxnIGZpbGw9IndoaXRlIj4KPHBhdGggZD0iTTk2IDQ4QzY5LjQ5IDQ4IDQ4IDY5LjQ5IDQ4IDk2czIxLjQ5IDQ4IDQ4IDQ4IDQ4LTIxLjQ5IDQ4LTQ4UzEyMi41MSA0OCA5NiA0OHptMCA4MGMtMTcuNjcgMC0zMi0xNC4zMy0zMi0zMnMxNC4zMy0zMiAzMi0zMiAzMiAxNC4zMyAzMiAzMi0xNC4zMyAzMi0zMiAzMnoiLz4KPHBhdGggZD0iTTE0NCA5Nkg0OGMtOC44NCAwLTE2IDcuMTYtMTYgMTZ2MzJjMCA4Ljg0IDcuMTYgMTYgMTYgMTZoOTZjOC44NCAwIDE2LTcuMTYgMTYtMTZ2LTMyYzAtOC44NC03LjE2LTE2LTE2LTE2eiIvPgo8L2c+CjxkZWZzPgo8bGluZWFyR3JhZGllbnQgaWQ9ImdyYWRpZW50IiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+CjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiM2NjdlZWEiLz4KPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjNzY0YmEyIi8+CjwvbGluZWFyR3JhZGllbnQ+CjwvZGVmcz4KPC9zdmc+"
+    />
+    <link rel="stylesheet" href="styles.css?v=1.0.5&nocache=2" />
+    <link rel="manifest" href="manifest.json" />
+    <script src="ios-cache-fix.js"></script>
+
+    <!-- CSS Fallback para garantir o fundo e cards brancos -->
+    <link
+      rel="apple-touch-icon"
+      href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCAwIDE5MiAxOTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxOTIiIGhlaWdodD0iMTkyIiByeD0iMjQiIGZpbGw9InVybCgjZ3JhZGllbnQpIi8+CjxnIGZpbGw9IndoaXRlIj4KPHBhdGggZD0iTTk2IDQ4QzY5LjQ5IDQ4IDQ4IDY5LjQ5IDQ4IDk2czIxLjQ5IDQ4IDQ4IDQ4IDQ4LTIxLjQ5IDQ4LTQ4UzEyMi41MSA0OCA5NiA0OHptMCA4MGMtMTcuNjcgMC0zMi0xNC4zMy0zMi0zMnMxNC4zMy0zMiAzMi0zMiAzMiAxNC4zMyAzMiAzMi0xNC4zMyAzMi0zMiAzMnoiLz4KPHBhdGggZD0iTTE0NCA5Nkg0OGMtOC44NCAwLTE2IDcuMTYtMTYgMTZ2MzJjMCA4Ljg0IDcuMTYgMTYgMTYgMTZoOTZjOC44NCAwIDE2LTcuMTYgMTYtMTZ2LTMyYzAtOC44NC03LjE2LTE2LTE2LTE2eiIvPgo8L2c+CjxkZWZzPgo8bGluZWFyR3JhZGllbnQgaWQ9ImdyYWRpZW50IiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+CjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiM2NjdlZWEiLz4KPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjNzY0YmEyIi8+CjwvbGluZWFyR3JhZGllbnQ+CjwvZGVmcz4KPC9zdmc+"
+    />
+  </head>
+  <body>
+    <div class="dashboard-container">
+      <!-- Barra Lateral -->
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <div class="app-logo">
+            <div class="logo-icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M3 13h6v8H3v-8zM9 3h6v18H9V3zm6 8h6v10h-6V11z"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
+            <h3>Finanças App</h3>
+          </div>
+          <div class="connection-status" id="connection-status">
+            <span class="status-indicator online" id="status-indicator"></span>
+            <span class="status-text" id="status-text">Online</span>
+          </div>
+        </div>
+        <ul class="sidebar-menu">
+          <li><a href="#" onclick="goHome()">🏠 Visão Geral</a></li>
+          <li><a href="#" onclick="showTransactions()">📊 Transações</a></li>
+          <li><a href="#" onclick="showReports()">📈 Relatórios</a></li>
+          <li><a href="#" onclick="showSettings()">⚙️ Configurações</a></li>
+          <li><a href="/portifolio/index.html">🏠 Portfólio</a></li>
+        </ul>
+      </aside>
+
+      <!-- Conteúdo Principal -->
+      <main class="main-content">
+        <!-- Tela Inicial - Seleção de Categoria -->
+        <div id="home-screen" class="screen active">
+          <header class="main-header">
+            <div class="header-content">
+              <div class="header-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </div>
+              <div class="header-text">
+                <h2>Gerenciador Financeiro</h2>
+                <p class="subtitle">
+                  Selecione uma categoria para gerenciar suas finanças
+                </p>
+              </div>
+            </div>
+          </header>
+
+          <div class="categories-grid">
+            <div class="category-card" onclick="selectCategory('games')">
+              <div class="category-icon">🎮</div>
+              <h3>Casa de Jogos</h3>
+              <p>Gerencie as finanças da sua casa de jogos</p>
+              <div class="category-stats">
+                <span class="stat">Receitas: R$ 0,00</span>
+                <span class="stat">Despesas: R$ 0,00</span>
+              </div>
+            </div>
+
+            <div class="category-card" onclick="selectCategory('bar')">
+              <div class="category-icon">🍺</div>
+              <h3>Bar</h3>
+              <p>Controle financeiro do seu bar</p>
+              <div class="category-stats">
+                <span class="stat">Receitas: R$ 0,00</span>
+                <span class="stat">Despesas: R$ 0,00</span>
+              </div>
+            </div>
+
+            <div class="category-card" onclick="selectCategory('personal')">
+              <div class="category-icon">👤</div>
+              <h3>Pessoal</h3>
+              <p>Gastos pessoais e pessoas que devem dinheiro</p>
+              <div class="category-stats">
+                <span class="stat">Gastos: R$ 0,00</span>
+                <span class="stat">A receber: R$ 0,00</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tela do Dashboard - Categoria Selecionada -->
+        <div id="dashboard-screen" class="screen">
+          <header class="main-header">
+            <div class="header-content">
+              <button class="back-btn" onclick="goHome()">← Voltar</button>
+              <h2 id="category-title">Selecionar Categoria</h2>
+            </div>
+          </header>
+
+          <!-- Grid do Dashboard -->
+          <section class="dashboard-grid">
+            <div class="grid-item">
+              <h3>💰 Receita Total</h3>
+              <p id="total-income">R$ 0,00</p>
+            </div>
+            <div class="grid-item">
+              <h3>💸 Despesas Totais</h3>
+              <p id="total-expense">R$ 0,00</p>
+            </div>
+            <div class="grid-item">
+              <h3>⚖️ Saldo Atual</h3>
+              <p id="current-balance">R$ 0,00</p>
+            </div>
+            <div class="grid-item">
+              <h3>📊 Total de Transações</h3>
+              <p id="total-transactions">0</p>
+            </div>
+          </section>
+
+          <!-- Seção de Adicionar Transação -->
+          <section class="add-transaction-section">
+            <h3>➕ Adicionar Transação</h3>
+            <div class="transaction-form">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="transaction-type">Tipo:</label>
+                  <select id="transaction-type">
+                    <option value="income">Receita</option>
+                    <option value="expense">Despesa</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="transaction-amount">Valor (R$):</label>
+                  <input
+                    type="number"
+                    id="transaction-amount"
+                    step="0.01"
+                    placeholder="0,00"
+                  />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="transaction-description">Descrição:</label>
+                <input
+                  type="text"
+                  id="transaction-description"
+                  placeholder="Ex: Venda de jogos, Aluguel, etc."
+                />
+              </div>
+              <button
+                onclick="addTransaction()"
+                class="btn btn-primary tooltip"
+                data-tooltip="Adiciona uma nova transação ao histórico"
+              >
+                Adicionar Transação
+              </button>
+            </div>
+          </section>
+
+          <!-- Seção de Pagamentos a Receber (apenas para categoria Pessoal) -->
+          <div
+            id="payments-section"
+            class="payments-section"
+            style="display: none"
+          >
+            <section class="add-payment-section">
+              <h3>💰 Adicionar Pagamento a Receber</h3>
+              <div class="payment-form">
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="debtor-name">Nome da Pessoa:</label>
+                    <input
+                      type="text"
+                      id="debtor-name"
+                      placeholder="Ex: João Silva"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="payment-amount">Valor (R$):</label>
+                    <input
+                      type="number"
+                      id="payment-amount"
+                      step="0.01"
+                      placeholder="0,00"
+                    />
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="payment-description">Descrição:</label>
+                    <input
+                      type="text"
+                      id="payment-description"
+                      placeholder="Ex: Empréstimo, Venda, etc."
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="payment-due-date">Data de Vencimento:</label>
+                    <input type="date" id="payment-due-date" />
+                  </div>
+                </div>
+                <button
+                  onclick="addPayment()"
+                  class="btn btn-success tooltip"
+                  data-tooltip="Adiciona um pagamento a receber"
+                >
+                  Adicionar Pagamento
+                </button>
+              </div>
+            </section>
+
+            <section class="payments-list-section">
+              <div class="section-header">
+                <h3>📋 Pagamentos a Receber</h3>
+                <div class="filter-buttons">
+                  <button
+                    class="filter-btn active"
+                    onclick="filterPayments('all', this)"
+                  >
+                    Todos
+                  </button>
+                  <button
+                    class="filter-btn"
+                    onclick="filterPayments('pending', this)"
+                  >
+                    Pendentes
+                  </button>
+                  <button
+                    class="filter-btn"
+                    onclick="filterPayments('paid', this)"
+                  >
+                    Pagos
+                  </button>
+                </div>
+              </div>
+              <div id="payments-list" class="payments-list">
+                <!-- Pagamentos serão inseridos aqui via JavaScript -->
+              </div>
+            </section>
+          </div>
+
+          <!-- Seção de Parcelamentos -->
+          <div id="installments-section" class="installments-section">
+            <section class="add-installment-section">
+              <h3>📅 Adicionar Parcelamento</h3>
+              <div class="installment-form">
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="installment-type">Tipo:</label>
+                    <select id="installment-type">
+                      <option value="expense">Despesa</option>
+                      <option value="income">Receita</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="installment-description">Descrição:</label>
+                    <input
+                      type="text"
+                      id="installment-description"
+                      placeholder="Ex: Financiamento, Empréstimo, etc."
+                    />
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="installment-total-amount"
+                      >Valor Total (R$):</label
+                    >
+                    <input
+                      type="number"
+                      id="installment-total-amount"
+                      step="0.01"
+                      placeholder="0,00"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="installments-count">Número de Parcelas:</label>
+                    <input
+                      type="number"
+                      id="installments-count"
+                      min="2"
+                      max="60"
+                      placeholder="Ex: 12"
+                    />
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="first-due-date">Primeira Parcela:</label>
+                    <input type="date" id="first-due-date" />
+                  </div>
+                  <div class="form-group">
+                    <label for="installment-notes"
+                      >Observações (opcional):</label
+                    >
+                    <input
+                      type="text"
+                      id="installment-notes"
+                      placeholder="Ex: Banco, fornecedor, etc."
+                    />
+                  </div>
+                </div>
+                <button
+                  onclick="addInstallment()"
+                  class="btn btn-primary tooltip"
+                  data-tooltip="Adiciona um novo parcelamento"
+                >
+                  Adicionar Parcelamento
+                </button>
+              </div>
+            </section>
+
+            <section class="installments-list-section">
+              <div class="section-header">
+                <h3>📋 Parcelamentos</h3>
+                <div class="filter-buttons">
+                  <button
+                    class="filter-btn active"
+                    onclick="filterInstallments('all', this)"
+                  >
+                    Todos
+                  </button>
+                  <button
+                    class="filter-btn"
+                    onclick="filterInstallments('active', this)"
+                  >
+                    Ativos
+                  </button>
+                  <button
+                    class="filter-btn"
+                    onclick="filterInstallments('completed', this)"
+                  >
+                    Concluídos
+                  </button>
+                  <button
+                    class="filter-btn"
+                    onclick="filterInstallments('cancelled', this)"
+                  >
+                    Cancelados
+                  </button>
+                </div>
+              </div>
+              <div id="installments-list" class="installments-list">
+                <!-- Parcelamentos serão inseridos aqui via JavaScript -->
+              </div>
+            </section>
+          </div>
+
+          <!-- Seção de Histórico de Transações -->
+          <section class="transactions-section">
+            <div class="section-header">
+              <h3>📋 Histórico de Transações</h3>
+              <div class="filter-buttons">
+                <button
+                  class="filter-btn active"
+                  onclick="filterTransactions('all', this)"
+                >
+                  Todas
+                </button>
+                <button
+                  class="filter-btn"
+                  onclick="filterTransactions('income', this)"
+                >
+                  Receitas
+                </button>
+                <button
+                  class="filter-btn"
+                  onclick="filterTransactions('expense', this)"
+                >
+                  Despesas
+                </button>
+              </div>
+            </div>
+            <div id="transactions-list" class="transactions-list">
+              <!-- Transações serão inseridas aqui via JavaScript -->
+            </div>
+          </section>
+        </div>
+
+        <!-- Tela de Configurações -->
+        <div id="settings-screen" class="screen">
+          <header class="main-header">
+            <div class="header-content">
+              <button class="back-btn" onclick="goHome()">← Voltar</button>
+              <h2>⚙️ Configurações</h2>
+            </div>
+          </header>
+
+          <div class="settings-grid">
+            <div class="settings-card">
+              <h3>💾 Backup e Restauração</h3>
+              <div class="settings-actions">
+                <button
+                  onclick="exportBackup()"
+                  class="btn btn-primary tooltip"
+                  data-tooltip="Salva todos os dados em um arquivo"
+                >
+                  📤 Exportar Backup
+                </button>
+                <button
+                  onclick="importBackup()"
+                  class="btn btn-success tooltip"
+                  data-tooltip="Carrega dados de um arquivo de backup"
+                >
+                  📥 Importar Backup
+                </button>
+                <button
+                  onclick="tryRecoverData()"
+                  class="btn btn-warning tooltip"
+                  data-tooltip="Tenta recuperar dados perdidos"
+                >
+                  🔍 Recuperar Dados
+                </button>
+              </div>
+              <div class="backup-info">
+                <p>
+                  <strong>Último backup automático:</strong>
+                  <span id="last-backup-time">Nunca</span>
+                </p>
+                <p>
+                  <strong>Último backup manual:</strong>
+                  <span id="last-manual-backup">Nunca</span>
+                </p>
+                <p>
+                  <strong>Total de backups:</strong>
+                  <span id="total-backups">0</span>
+                </p>
+                <div id="storage-info">
+                  <!-- Informações de armazenamento serão inseridas aqui -->
+                </div>
+              </div>
+            </div>
+
+            <div class="settings-card">
+              <h3>🗑️ Gerenciamento de Dados</h3>
+              <div class="settings-actions">
+                <button onclick="clearAllData()" class="btn btn-danger">
+                  🗑️ Limpar Todos os Dados
+                </button>
+                <button onclick="showBackupsList()" class="btn btn-warning">
+                  📋 Ver Backups
+                </button>
+              </div>
+              <div class="data-info">
+                <p>
+                  <strong>Transações:</strong>
+                  <span id="total-transactions-count">0</span>
+                </p>
+                <p>
+                  <strong>Pagamentos:</strong>
+                  <span id="total-payments-count">0</span>
+                </p>
+                <p>
+                  <strong>Parcelamentos:</strong>
+                  <span id="total-installments-count">0</span>
+                </p>
+              </div>
+            </div>
+
+            <div class="settings-card">
+              <h3>📊 Relatórios</h3>
+              <div class="settings-actions">
+                <button onclick="generateReport()" class="btn btn-primary">
+                  📊 Gerar Relatório
+                </button>
+                <button onclick="testPDF()" class="btn btn-warning">
+                  🧪 Testar PDF
+                </button>
+                <button onclick="exportToCSV()" class="btn btn-success">
+                  📄 Exportar CSV
+                </button>
+              </div>
+            </div>
+
+            <div class="settings-card">
+              <h3>ℹ️ Informações do App</h3>
+              <div class="app-info">
+                <p>
+                  <strong>Versão:</strong> <span id="app-version">1.0</span>
+                </p>
+                <p>
+                  <strong>Última atualização:</strong>
+                  <span id="last-update">Hoje</span>
+                </p>
+                <p>
+                  <strong>Status:</strong> <span id="app-status">Online</span>
+                </p>
+              </div>
+              <div class="settings-actions">
+                <button
+                  id="install-app-btn"
+                  onclick="promptPwaInstall()"
+                  class="btn btn-success"
+                  style="display: none"
+                >
+                  📲 Instalar App
+                </button>
+                <button
+                  onclick="showKeyboardShortcuts()"
+                  class="btn btn-primary tooltip"
+                  data-tooltip="Mostra todos os atalhos de teclado disponíveis"
+                >
+                  ⌨️ Ver Atalhos
+                </button>
+                <button
+                  onclick="forceReload()"
+                  class="btn btn-warning tooltip"
+                  data-tooltip="Força atualização completa da página"
+                >
+                  🔄 Atualizar App
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Modal de Backups -->
+          <div id="backups-modal" class="modal" style="display: none">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h3>📋 Histórico de Backups</h3>
+                <button onclick="closeModal()" class="close-btn">
+                  &times;
+                </button>
+              </div>
+              <div class="modal-body">
+                <div id="backups-list">
+                  <!-- Lista de backups será inserida aqui -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Modal instruções iOS -->
+          <div id="ios-install-modal" class="modal" style="display: none">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h3>📲 Instalar no iPhone (iOS)</h3>
+                <button onclick="closeIosInstallModal()" class="close-btn">
+                  &times;
+                </button>
+              </div>
+              <div class="modal-body">
+                <ol style="line-height: 1.6">
+                  <li>Abra este site no Safari.</li>
+                  <li>
+                    Toque em Compartilhar (ícone de quadrado com seta para
+                    cima).
+                  </li>
+                  <li>Selecione "Adicionar à Tela de Início".</li>
+                  <li>Confirme o nome e toque em "Adicionar".</li>
+                </ol>
+                <p style="margin-top: 10px; color: #666">
+                  Dica: em outros apps (Instagram, WhatsApp, etc.) use "Abrir no
+                  Safari" primeiro.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tela de Relatórios -->
+        <div id="reports-screen" class="screen">
+          <header class="main-header">
+            <div class="header-content">
+              <button class="back-btn" onclick="goHome()">← Voltar</button>
+              <h2>📊 Relatórios</h2>
+            </div>
+          </header>
+
+          <div id="reports-container" class="reports-container">
+            <!-- Conteúdo dos relatórios será inserido aqui -->
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Supabase desativado para execução local de portfólio -->
+    <script>
+      window.DISABLE_SUPABASE = true;
+    </script>
+    <script src="supabase-client.js?v=1.0.14&nocache=15"></script>
+    <!-- jsPDF será carregado sob demanda pelo script.js (ensureJsPDFReady) -->
+
+    <script>
+      // Forçar atualização no iOS (versão corrigida)
+      if (
+        navigator.userAgent.includes("iPhone") ||
+        navigator.userAgent.includes("iPad")
+      ) {
+        // Função para fazer backup dos dados importantes
+        function backupImportantData() {
+          const importantData = {
+            financeData: localStorage.getItem("financeData"),
+            financialManager_backups: localStorage.getItem(
+              "financialManager_backups"
+            ),
+            weeklyReports: localStorage.getItem("weeklyReports"),
+            monthlyReports: localStorage.getItem("monthlyReports"),
+            lastWeeklyReport: localStorage.getItem("lastWeeklyReport"),
+            lastMonthlyReport: localStorage.getItem("lastMonthlyReport"),
+            financialManager_version: localStorage.getItem(
+              "financialManager_version"
+            ),
+          };
+
+          // Salvar backup temporário
+          sessionStorage.setItem("tempBackup", JSON.stringify(importantData));
+        }
+
+        // Função para restaurar dados importantes
+        function restoreImportantData() {
+          const tempBackup = sessionStorage.getItem("tempBackup");
+          if (tempBackup) {
+            try {
+              const backup = JSON.parse(tempBackup);
+
+              // Restaurar dados importantes
+              Object.keys(backup).forEach((key) => {
+                if (backup[key]) {
+                  localStorage.setItem(key, backup[key]);
+                }
+              });
+
+              // Limpar backup temporário
+              sessionStorage.removeItem("tempBackup");
+            } catch (error) {
+              console.error("Erro ao restaurar dados:", error);
+            }
+          }
+        }
+
+        // Fazer backup antes de qualquer operação
+        backupImportantData();
+
+        // Forçar reload se detectar versão antiga
+        const currentVersion = "1.0.6";
+        const storedVersion = localStorage.getItem("app_version");
+
+        if (storedVersion !== currentVersion) {
+          localStorage.setItem("app_version", currentVersion);
+          // Força reload apenas se for uma versão diferente
+          if (storedVersion && storedVersion !== currentVersion) {
+            // Restaurar dados antes do reload
+            restoreImportantData();
+            window.location.reload(true);
+          }
+        }
+
+        // Verificar se o service worker está atualizado
+        if ("serviceWorker" in navigator) {
+          navigator.serviceWorker.getRegistrations().then((registrations) => {
+            registrations.forEach((registration) => {
+              registration.update();
+            });
+          });
+        }
+      }
+
+      // Verificação simples das bibliotecas PDF
+      window.addEventListener("load", function () {
+        setTimeout(() => {
+          if (typeof window.jsPDF !== "undefined") {
+            if (typeof showNotification !== "undefined") {
+              // showNotification('Bibliotecas PDF prontas!', 'success'); // [REMOVIDO: Poluição da tela]
+            }
+          } else {
+            if (typeof showNotification !== "undefined") {
+              // showNotification('PDF não disponível, mas relatórios em texto funcionarão', 'info'); // [REMOVIDO: Poluição da tela]
+            }
+          }
+        }, 3000);
+      });
+    </script>
+
+    <script src="script.js?v=1.0.31&nocache=27"></script>
+  </body>
+</html>

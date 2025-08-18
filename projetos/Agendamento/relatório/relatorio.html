@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório - Sistema de Agendamento PPGD</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 {
+            color: #59110b;
+            border-bottom: 2px solid #59110b;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #7f1c14;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #9f2e1c;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .logo {
+            max-width: 200px;
+            margin-bottom: 20px;
+        }
+        .info {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-left: 4px solid #59110b;
+            margin: 20px 0;
+        }
+        .date {
+            text-align: right;
+            color: #666;
+            font-style: italic;
+        }
+        .footer {
+            margin-top: 50px;
+            text-align: center;
+            font-size: 0.9em;
+            color: #666;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+        }
+        .checklist {
+            list-style-type: none;
+            padding: 0;
+        }
+        .checklist li:before {
+            content: "✓ ";
+            color: #28a745;
+        }
+        .code {
+            font-family: 'Courier New', monospace;
+            background-color: #f4f4f4;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+        .fase-atual {
+            background-color: #f8f9fa;
+            border-left: 4px solid #59110b;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .fase-atual h3 {
+            color: #59110b;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+        .fase-atual ul {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+        .fase-atual li {
+            margin: 8px 0;
+        }
+        .fase-atual p {
+            margin: 10px 0;
+        }
+        .fase-atual strong {
+            color: #59110b;
+        }
+        .btn-voltar {
+            display: inline-block;
+            background-color: #59110b;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            transition: background-color 0.3s;
+        }
+        .btn-voltar:hover {
+            background-color: #7a1710;
+        }
+        .btn-voltar i {
+            margin-right: 5px;
+        }
+        
+        .btn-portfolio {
+            display: inline-block;
+            background-color: #e74c3c;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            margin-left: 10px;
+            transition: background-color 0.3s;
+        }
+        
+        .btn-portfolio:hover {
+            background-color: #c0392b;
+        }
+        
+        .btn-portfolio i {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <a href="../index.html" class="btn-voltar">
+        <i>←</i> Voltar ao Menu Principal
+    </a>
+    <a href="../portifolio/index.html" class="btn-portfolio">
+        <i>🏠</i> Portfólio
+    </a>
+
+    <div class="header">
+        <h1>Relatório de Desenvolvimento</h1>
+        <h2>Sistema de Agendamento de Bancas PPGD</h2>
+        <div class="date">Atualizado em: 24/07/2025</div>
+    </div>
+
+    <div class="info">
+        <strong>Versão:</strong> 1.7.0<br>
+        <strong>Última Atualização:</strong> 24/07/2025<br>
+        <strong>Atualização Anterior:</strong> 15/07/2025<br>
+        <strong>Status:</strong> Em desenvolvimento - Modularização e correções de qualidade<br>
+        <strong>Fase Atual:</strong> Fase 5 - Modularização e Qualidade de Código<br>
+        <strong>Progresso da Fase:</strong> Código modular, validações consolidadas e UX preservada.
+    </div>
+
+    <div class="info fase-atual">
+        <h3>Detalhes da Fase Atual</h3>
+        <p>O projeto encontra-se na fase de modularização e qualidade de código. Nesta fase, implementamos:</p>
+        <ul>
+            <li>Refatoração completa para módulos ES6 (`validation.js`, `ui.js`, `data.js`, `members.js`, `upload.js`, `form.js`).</li>
+            <li>Novo entrypoint `js/formulario-modular.js` e atualização do HTML para `type="module"`.</li>
+            <li>Correções de validação (CPF, e-mail, verificação de mulher na banca) e progresso do formulário.</li>
+            <li>Compatibilidade CSS no Safari/iOS (`-webkit-backdrop-filter`).</li>
+        </ul>
+        <p><strong>Próximo marco:</strong> Testes unitários dos módulos e preview/compressão de PDF.</p>
+    </div>
+
+    <h2>1. Visão Geral do Projeto</h2>
+    <h3>1.1 Objetivo</h3>
+            <p>Este projeto demonstra um sistema completo de agendamento de bancas para os programas de Mestrado e Doutorado, com foco em usabilidade e acessibilidade.</p>
+    
+    <h3>1.2 Tecnologias Utilizadas</h3>
+    <ul>
+        <li><strong>Front-end:</strong> HTML5, CSS3 (com variáveis CSS), JavaScript (Vanilla)</li>
+        <li><strong>Estrutura:</strong> Páginas estáticas com responsividade e validação em tempo real</li>
+        <li><strong>Arquitetura:</strong> Organização modular de estilos e scripts</li>
+        <li><strong>Versionamento:</strong> Git para controle de versão</li>
+    </ul>
+
+    <h2>2. Estrutura do Projeto</h2>
+    <h3>2.1 Diretórios Principais</h3>
+    <pre><code>
+    testes-main/
+    ├── css/                        # Estilos da aplicação
+    │   ├── _variables.css          # Variáveis CSS globais
+    │   └── ...
+    ├── js/
+    │   ├── formulario-modular.js   # Ponto de entrada (ES Modules)
+    │   ├── suporte.js              # Lógica da página de suporte
+    │   └── modules/                # Módulos do sistema
+    │       ├── config.js
+    │       ├── data.js
+    │       ├── validation.js
+    │       ├── ui.js
+    │       ├── members.js
+    │       ├── upload.js
+    │       └── form.js
+    ├── pgs/
+    │   ├── agendar.html            # Página de agendamento
+    │   ├── confirmacao.html        # Página de confirmação
+    │   └── suporte.html            # Página de suporte
+    ├── relatório/
+    │   └── relatorio.html         # Este relatório
+    └── index.html                  # Página inicial
+    </code></pre>
+
+    <h2>3. Funcionalidades Implementadas</h2>
+    <h3>3.1 Página Inicial</h3>
+    <ul>
+        <li>Apresentação dos programas de Mestrado e Doutorado</li>
+        <li>Navegação intuitiva</li>
+        <li>Design responsivo</li>
+    </ul>
+
+    <h3>3.2 Sistema de Agendamento</h3>
+    <ul>
+        <li>Formulário dinâmico com validação</li>
+        <li>Seleção de curso (Mestrado/Doutorado)</li>
+        <li>Validação de membros externos</li>
+    </ul>
+
+    <h2>4. Atualizações Recentes</h2>
+
+    <h3>4.5 Modularização e Padronização (24/07/2025)</h3>
+    <ul class="checklist">
+        <li>Refatoração do antigo `formulario.js` em módulos: `validation.js`, `ui.js`, `data.js`, `members.js`, `upload.js`, `form.js`.</li>
+        <li>Criação do `js/formulario-modular.js` e atualização do `agendar.html` para `<script type="module">`.</li>
+        <li>`confirmacao.js` convertido para módulo e integrado ao `data.js` (remoção de duplicação de professores).</li>
+                    <li>Padronização do e-mail de suporte para `suporte@ppgd.edu.br` em todas as páginas.</li>
+        <li>Correção de compatibilidade CSS: adição de `-webkit-backdrop-filter` onde há `backdrop-filter`.</li>
+        <li>Documentação adicionada nos módulos com notas de manutenção e roadmap.</li>
+    </ul>
+
+    <h3>4.4 Correções de Validação e Progresso (15/07/2025)</h3>
+    <ul class="checklist">
+        <li>Ajuste do mapeamento de validações no checklist: suporte a `validarEmail`, `validarCPF` e `validarPalavrasChave` como strings.</li>
+        <li>Correção da verificação “mulher na banca” para uso direto do `temMulherNaBanca` sem import dinâmico.</li>
+        <li>Alinhamento da barra de progresso para usar `#progress-indicator` no HTML.</li>
+        <li>Correção de import no `upload.js` (`formatFileSize` vindo de `ui.js`).</li>
+        <li>Pequenos refinamentos de UX sem alterar a interface.</li>
+    </ul>
+
+    <h3>4.3 Campo de Palavras‑Chave do Aluno (03/07/2025)</h3>
+    <ul class="checklist">
+        <li>Remoção das palavras‑chave recomendadas por projeto e detecção automática no resumo.</li>
+        <li>Criação de campo dedicado `palavras_chave` com validação mínima (2 termos, separados por vírgulas).</li>
+        <li>Atualização do `validation.js`, `form.js` e `data.js` para refletir a nova regra.</li>
+        <li>Resumo agora valida apenas quantidade mínima de palavras (100), com barra de progresso local.</li>
+    </ul>
+    <h3>4.1 Correções e Aprimoramento da Lógica da Banca (21/06/2025)</h3>
+    <ul class="checklist">
+        <li>Correção da validação de CPF do aluno, que não estava funcionando corretamente e impedia a atualização da barra de progresso.</li>
+        <li>Implementação da lógica interdependente para a banca de <strong>Qualificação de Mestrado</strong>:
+            <ul>
+                <li style="list-style-type: circle; margin-left: 20px;">Garante um total de 3 membros na banca (1 orientador + 2 outros).</li>
+                <li style="list-style-type: circle; margin-left: 20px;">Permite combinações flexíveis (2 internos, 2 externos, ou 1 de cada).</li>
+                <li style="list-style-type: circle; margin-left: 20px;">A seleção de membros internos agora ajusta dinamicamente as vagas para externos, e vice-versa.</li>
+                <li style="list-style-type: circle; margin-left: 20px;">Corrigido o bug que impedia a seleção de membros internos no estado inicial do formulário.</li>
+            </ul>
+        </li>
+        <li>Implementação da lógica interdependente para a banca de <strong>Qualificação de Doutorado</strong>:
+            <ul>
+                <li style="list-style-type: circle; margin-left: 20px;">Garante um total de 5 membros na banca (1 orientador + 4 outros).</li>
+                <li style="list-style-type: circle; margin-left: 20px;">A seleção de membros internos e externos tornou-se totalmente interdependente para respeitar o limite de 4 vagas.</li>
+                <li style="list-style-type: circle; margin-left: 20px;">Corrigido o bug que impedia a adição de membros externos após a seleção de internos.</li>
+            </ul>
+        </li>
+        <li>Validação do formulário foi aprimorada para garantir o número correto de membros em todas as modalidades de qualificação.</li>
+    </ul>
+
+    <h3>4.2 Campo de Upload de Trabalho Final (20/06/2025)</h3>
+    <ul class="checklist">
+        <li>Implementação de campo de upload para trabalho final em formato PDF</li>
+        <li>Validação automática de arquivos PDF no formulário de agendamento</li>
+        <li>Integração do campo de upload com a barra de progresso</li>
+        <li>Validação de arquivos PDF no formulário</li>
+        <li>Exibição do nome do arquivo na página de confirmação</li>
+        <li>Atualização do checklist de progresso do formulário</li>
+        <li>Otimização do código de validação</li>
+    </ul>
+
+    <h3>4.2 Análise das Mudanças Recentes (21/06/2025)</h3>
+    <ul class="checklist">
+        <li><strong>Lógica da Banca Aprimorada</strong>: A lógica para a composição das bancas de Qualificação de Mestrado e Doutorado foi completamente reformulada. Agora, a seleção de membros internos e externos é interdependente, garantindo que o número total de membros (3 para Mestrado, 5 para Doutorado, incluindo o orientador) seja sempre respeitado. Foram corrigidos múltiplos bugs que impediam a seleção correta e a atualização das vagas.</li>
+        <li><strong>Validação de CPF Corrigida</strong>: A função de validação de CPF foi corrigida, resolvendo um problema que impedia a validação correta e a atualização da barra de progresso do formulário.</li>
+        <li><strong>Campo de Upload Funcional</strong>: O sistema de upload de trabalho final em PDF foi implementado com sucesso na fase anterior, incluindo validação, integração com a barra de progresso e feedback visual.</li>
+        <li><strong>Interface e Navegação Padronizadas</strong>: A interface e a navegação foram padronizadas em todas as páginas para uma experiência de usuário mais coesa.</li>
+        <li><strong>Resumo</strong>: O sistema está agora mais robusto, com as principais regras de negócio para a composição das bancas funcionando corretamente. Os próximos passos continuam focados nas melhorias de upload e no painel administrativo.</li>
+    </ul>
+
+    <h2>5. Próximos Passos</h2>
+    <h3>5.1 Melhorias Planejadas</h3>
+    <ul>
+        <li>Implementação de validação de tamanho de arquivo PDF (máximo 10MB)</li>
+        <li>Sistema de compressão automática de arquivos grandes</li>
+        <li>Preview do PDF antes do upload</li>
+        <li>Armazenamento seguro dos arquivos no servidor</li>
+        <li>Sistema de backup automático dos arquivos enviados</li>
+        <li>Notificação por e-mail com link para download do arquivo</li>
+        <li>Painel administrativo para gerenciamento de arquivos</li>
+        <li>Testes de usabilidade com usuários reais</li>
+        <li>Otimização para dispositivos móveis</li>
+        <li>Implementação de validação no servidor</li>
+    </ul>
+
+    <h2>6. Cronograma de Implementação</h2>
+    <div class="info">
+        <h3>Fase 1 - Preparação</h3>
+        <ul>
+            <li>Configuração do ambiente de hospedagem</li>
+            <li>Implementação de SSL</li>
+            <li>Configuração de domínio</li>
+        </ul>
+
+        <h3>Fase 2 - Testes</h3>
+        <ul>
+            <li>Testes de integração</li>
+            <li>Testes de usabilidade</li>
+            <li>Correção de bugs identificados</li>
+        </ul>
+
+        <h3>Fase 3 - Documentação e Treinamento</h3>
+        <ul>
+            <li>Finalização dos manuais</li>
+            <li>Preparação do material de treinamento</li>
+            <li>Realização das sessões de treinamento</li>
+        </ul>
+
+        <h3>Fase 4 - Lançamento</h3>
+        <ul>
+            <li>Deploy final do sistema</li>
+            <li>Monitoramento inicial</li>
+            <li>Suporte pós-lançamento</li>
+        </ul>
+    </div>
+
+    <h2>7. Requisitos para Produção</h2>
+    <ul>
+        <li>Servidor web com suporte a HTTPS</li>
+        <li>Banco de dados para armazenamento de agendamentos</li>
+        <li>Sistema de backup automático</li>
+        <li>Monitoramento de disponibilidade</li>
+        <li>Plano de contingência para falhas</li>
+    </ul>
+
+    <h2>8. Changelog por Arquivo</h2>
+    <h3>24/07/2025</h3>
+    <ul>
+        <li><span class="code">js/formulario-modular.js</span>: criado entrypoint modular com inicialização segura e dicas de uso via servidor.</li>
+        <li><span class="code">js/modules/ui.js</span>: mapeamento de validações por nome, ajuste da progressBar para <span class="code">#progress-indicator</span>, notas de manutenção.</li>
+        <li><span class="code">js/modules/validation.js</span>: comentários de manutenção (limites centralizados, i18n, testes); pequenas melhorias de leitura.</li>
+        <li><span class="code">js/modules/members.js</span>: comentários de projeto; organização de listeners; logs de erro mais claros.</li>
+        <li><span class="code">js/modules/upload.js</span>: roadmap (preview, compressão, progresso real, validação server-side); import correto de <span class="code">formatFileSize</span>.</li>
+        <li><span class="code">js/modules/data.js</span>: notas sobre evitar valores mágicos; inclusão do campo obrigatório <span class="code">palavras_chave</span>.</li>
+        <li><span class="code">js/confirmacao.js</span>: passou a importar <span class="code">PROFESSORES_INTERNOS</span> do módulo <span class="code">data.js</span>; removida duplicação; comentário guia.</li>
+        <li><span class="code">pgs/confirmacao.html</span>: script como módulo; padronização de e-mail de suporte; compatibilidade <span class="code">-webkit-backdrop-filter</span>.</li>
+        <li><span class="code">pgs/agendar.html</span>: troca para <span class="code">type="module"</span>; correção de compat CSS; ajustes de layout sem alterar UI/UX.</li>
+        <li><span class="code">pgs/suporte.html</span> e <span class="code">index.html</span>: padronização de e-mail; compat CSS; melhorias sutis de ícone/estética.</li>
+    </ul>
+
+    <h3>15/07/2025</h3>
+    <ul>
+        <li><span class="code">js/modules/ui.js</span>: suporte a validações por string (<span class="code">validarEmail</span>, <span class="code">validarCPF</span>, <span class="code">validarPalavrasChave</span>); uso direto de <span class="code">temMulherNaBanca</span>.</li>
+        <li><span class="code">js/modules/upload.js</span>: import de <span class="code">formatFileSize</span> movido de <span class="code">validation.js</span> para <span class="code">ui.js</span>.</li>
+        <li><span class="code">pgs/agendar.html</span>: alinhamento da progressBar local do resumo (<span class="code">#progress-indicator</span>).</li>
+    </ul>
+
+    <h3>03/07/2025</h3>
+    <ul>
+        <li><span class="code">pgs/agendar.html</span>: criado campo <span class="code">palavras_chave</span> (mínimo 2 termos, vírgulas); removidas recomendações automáticas.</li>
+        <li><span class="code">js/modules/validation.js</span>: <span class="code">validarResumo(texto)</span> agora só confere 100 palavras; nova <span class="code">validarPalavrasChave</span>.</li>
+        <li><span class="code">js/modules/form.js</span>: integração do novo campo; remoção da detecção automática por projeto.</li>
+        <li><span class="code">js/modules/data.js</span>: inclusão de <span class="code">palavras_chave</span> em <span class="code">CAMPOS_OBRIGATORIOS</span>.</li>
+    </ul>
+
+    <div class="footer">
+        <p>Relatório gerado em: 24/07/2025 | Todos os direitos reservados</p>
+    </div>
+</body>
+</html>

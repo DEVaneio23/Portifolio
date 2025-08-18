@@ -1,0 +1,238 @@
+/* 
+ * ===========================================================================
+ * ESTILOS GLOBAIS E RESET
+ * 
+ * Este arquivo contém estilos de reset, tipografia e elementos base.
+ * ===========================================================================
+ */
+
+:root {
+  /* Cores */
+  --cor-fundo-geral: #eae8e3;
+  --cor-texto-principal: #000000;
+  --cor-hover: #000000;
+  --cor-principal: #000000;
+  --cor-texto-escuro: #000000;
+
+  /* Tipografia */
+  --fonte-principal: 'Poppins', Verdana, Geneva, Tahoma, sans-serif;
+
+  /* Tamanhos */
+  --altura-total: 100%;
+  --largura-maxima: 100%;
+
+  /* Outros */
+  --margin-zero: 0;
+  --padding-zero: 0;
+  --transicao-padrao: 0.3s;
+}
+
+/* Reset básico */
+*, 
+*::before, 
+*::after {
+  margin: var(--margin-zero);
+  padding: var(--padding-zero);
+  box-sizing: border-box;
+}
+
+/* Elementos base */
+html {
+  font-size: 16px; /* Base para cálculos em rem */
+  height: var(--altura-total);
+}
+
+body {
+  margin: var(--margin-zero);
+  padding: var(--padding-zero);
+  min-height: 100vh;
+  font-family: var(--fonte-principal);
+  color: var(--cor-texto-principal);
+  background-color: var(--cor-fundo-geral);
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Layout */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Tipografia */
+h1, h2, h3, h4, h5, h6 {
+  margin: 0 0 1rem 0;
+  line-height: 1.2;
+  color: var(--cor-texto-escuro);
+}
+
+p {
+  margin: 0 0 1rem 0;
+  line-height: 1.6;
+}
+
+a {
+  color: var(--cor-principal);
+  text-decoration: none;
+  transition: color var(--transicao-padrao);
+}
+
+a:hover {
+  color: var(--cor-hover);
+  text-decoration: underline;
+}
+
+/* Imagens */
+img {
+  max-width: var(--largura-maxima);
+  height: auto;
+  display: block;
+}
+
+/* Listas */
+ul, ol {
+  margin: 0 0 1rem 0;
+  padding-left: 1.5rem;
+}
+
+/* Formulários */
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Estilos de Botão Padrão */
+.btn {
+  display: inline-block;
+  font-weight: 600;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 1px solid transparent;
+  padding: 0.75rem 1.25rem;
+  font-size: var(--font-padrao);
+  border-radius: var(--radius-medio);
+  transition: all var(--transicao-padrao);
+  text-decoration: none;
+}
+
+.btn-principal {
+  color: var(--cor-texto-claro);
+  background-color: var(--cor-principal);
+  border-color: var(--cor-principal);
+}
+
+.btn-principal:hover {
+  background-color: var(--cor-hover);
+  border-color: var(--cor-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--sombra-botao);
+}
+
+/* Estilos de Grupo de Formulário */
+.form-group {
+  margin-bottom: var(--gap-padrao);
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: var(--gap-mini);
+  font-weight: 600;
+  color: var(--cor-texto-escuro);
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: var(--font-padrao);
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--cor-texto-suave);
+  background-color: var(--cor-fundo-branco);
+  background-clip: padding-box;
+  border: 1px solid var(--cor-borda);
+  appearance: none;
+  border-radius: var(--radius-medio);
+  transition: border-color var(--transicao-padrao), box-shadow var(--transicao-padrao);
+}
+
+.form-control:focus {
+  outline: 0;
+  border-color: var(--cor-principal);
+  box-shadow: 0 0 0 3px rgba(89, 17, 11, 0.1);
+}
+
+textarea.form-control {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* Alertas Globais */
+.alert {
+  position: relative;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius-medio);
+}
+
+.alert-sucesso {
+  color: #0f5132;
+  background-color: var(--cor-sucesso-bg);
+  border-color: var(--cor-sucesso-borda);
+}
+
+.alert-aviso {
+  color: #664d03;
+  background-color: var(--cor-aviso-bg);
+  border-color: var(--cor-aviso-borda);
+}
+
+.alert-erro {
+  color: #842029;
+  background-color: var(--cor-alerta-bg);
+  border-color: var(--cor-alerta-borda);
+}
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  cursor: pointer;
+}
+
+/* Utilidades */
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.text-left { text-align: left; }
+
+/* Responsividade */
+@media (max-width: 768px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 14px;
+  }
+  
+  .container {
+    padding-left: var(--gap-pequeno);
+    padding-right: var(--gap-pequeno);
+  }
+}

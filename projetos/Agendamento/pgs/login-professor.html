@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content="Login do Professor - Sistema de Agendamento de Bancas"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Professor - PPGD</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+
+    <style>
+      /* ===========================================================================
+       VARIÁVEIS CSS - PALETA DE CORES E CONFIGURAÇÕES GLOBAIS
+       =========================================================================== */
+      :root {
+        --primary: #59110b; /* Vermelho escuro principal */
+        --secondary: #7f1c14; /* Vermelho médio secundário */
+        --accent: #9f2e1c; /* Vermelho claro de destaque */
+        --text: #333; /* Cor do texto principal */
+        --text-light: #666; /* Cor do texto secundário */
+        --white: #ffffff; /* Branco */
+        --shadow: rgba(0, 0, 0, 0.1); /* Sombra padrão */
+        --shadow-hover: rgba(89, 17, 11, 0.15); /* Sombra no hover */
+        --border: #e1e5e9; /* Borda padrão */
+        --bg-light: #f8fafc; /* Fundo claro */
+        --success: #16a34a; /* Verde para sucesso */
+        --error: #dc2626; /* Vermelho para erro */
+        --warning: #d97706; /* Laranja para aviso */
+      }
+
+      /* ===========================================================================
+       RESET CSS - NORMALIZAÇÃO DOS ELEMENTOS
+       =========================================================================== */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* ===========================================================================
+       ESTILOS DO BODY - FUNDO E TIPOGRAFIA BASE
+       =========================================================================== */
+      body {
+        font-family: "Inter", sans-serif;
+        line-height: 1.6;
+        color: var(--text);
+        background: linear-gradient(
+          135deg,
+          var(--primary) 0%,
+          var(--secondary) 100%
+        );
+        min-height: 100vh;
+      }
+
+      /* ===========================================================================
+       HEADER - CABEÇALHO FIXO COM NAVEGAÇÃO
+       =========================================================================== */
+      header {
+        background: rgba(255, 255, 255, 0.95);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 2px 20px var(--shadow);
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+      }
+
+      .header {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 1rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      /* Logo/título do PPGD */
+      .header h1 {
+        color: var(--primary);
+        font-size: 1.8rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .header h1 i {
+        color: var(--secondary);
+      }
+
+      /* Menu de navegação */
+      nav ul {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+        align-items: center;
+      }
+
+      nav a {
+        text-decoration: none;
+        color: var(--primary);
+        font-weight: 500;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+      }
+
+      nav a:hover {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: var(--white);
+        transform: translateY(-2px);
+      }
+
+      .btn-relatorio {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: var(--white) !important;
+        padding: 0.75rem 1.5rem !important;
+        border-radius: 25px !important;
+        box-shadow: 0 4px 15px var(--shadow-hover);
+      }
+
+      .btn-relatorio:hover {
+        transform: translateY(-3px) !important;
+        box-shadow: 0 6px 20px var(--shadow-hover) !important;
+      }
+
+      /* ===========================================================================
+       CONTEÚDO PRINCIPAL - PÁGINA DE LOGIN
+       =========================================================================== */
+      main {
+        margin-top: 80px; /* Espaço para o header fixo */
+        padding: 2rem;
+        min-height: calc(100vh - 80px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .login-container {
+        width: 100%;
+        max-width: 450px;
+        background: var(--white);
+        border-radius: 20px;
+        box-shadow: 0 20px 40px var(--shadow);
+        overflow: hidden;
+        position: relative;
+      }
+
+      .login-container::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%2359110b" opacity="0.05"/><circle cx="75" cy="75" r="1" fill="%2359110b" opacity="0.05"/><circle cx="50" cy="10" r="0.5" fill="%2359110b" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+        opacity: 0.3;
+      }
+
+      .login-header {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: var(--white);
+        padding: 2.5rem 2rem;
+        text-align: center;
+        position: relative;
+        z-index: 1;
+      }
+
+      .logo {
+        margin-bottom: 1rem;
+      }
+
+      .logo h2 {
+        font-size: 2rem;
+        font-weight: 700;
+        margin: 0;
+      }
+
+      .login-header h1 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+      }
+
+      .login-header p {
+        font-size: 1rem;
+        opacity: 0.9;
+      }
+
+      .login-form {
+        padding: 2.5rem 2rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .form-group label {
+        display: block;
+        color: var(--text);
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+        font-size: 0.95rem;
+      }
+
+      .form-group input {
+        width: 100%;
+        padding: 0.875rem 1rem;
+        border: 2px solid var(--border);
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        background: var(--white);
+        font-family: inherit;
+      }
+
+      .form-group input:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(89, 17, 11, 0.1);
+      }
+
+      .form-group input.error {
+        border-color: var(--error);
+        box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+      }
+
+      .btn-entrar {
+        width: 100%;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: var(--white);
+        border: none;
+        padding: 1rem;
+        border-radius: 8px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        font-family: inherit;
+      }
+
+      .btn-entrar::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: left 0.5s;
+      }
+
+      .btn-entrar:hover::before {
+        left: 100%;
+      }
+
+      .btn-entrar:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px var(--shadow-hover);
+      }
+
+      .btn-entrar:active {
+        transform: translateY(0);
+      }
+
+      .btn-entrar:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      .loading-spinner {
+        display: none;
+        margin-right: 8px;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .mensagem {
+        padding: 1rem;
+        border-radius: 8px;
+        margin-bottom: 1.5rem;
+        font-weight: 500;
+        display: none;
+        animation: slideInDown 0.3s ease;
+      }
+
+      @keyframes slideInDown {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .mensagem.erro {
+        background: #fef2f2;
+        color: var(--error);
+        border: 1px solid #fecaca;
+        border-left: 4px solid var(--error);
+      }
+
+      .mensagem.sucesso {
+        background: #f0fdf4;
+        color: var(--success);
+        border: 1px solid #bbf7d0;
+        border-left: 4px solid var(--success);
+      }
+
+      .credenciais-teste {
+        background: var(--bg-light);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        text-align: center;
+      }
+
+      .credenciais-teste h3 {
+        color: var(--primary);
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+        font-weight: 600;
+      }
+
+      .credenciais-teste p {
+        color: var(--text-light);
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .credenciais-teste .credencial {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 0.75rem;
+        margin: 0.5rem 0;
+        font-family: "Courier New", monospace;
+        font-size: 0.9rem;
+        color: var(--text);
+      }
+
+      .footer {
+        background: var(--bg-light);
+        padding: 2rem;
+        text-align: center;
+        border-top: 1px solid var(--border);
+      }
+
+      .footer-section {
+        margin-bottom: 1.5rem;
+      }
+
+      .footer-section h3 {
+        color: var(--primary);
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+      }
+
+      .footer-section p {
+        color: var(--text-light);
+        font-size: 0.9rem;
+      }
+
+      .footer-bottom {
+        border-top: 1px solid var(--border);
+        padding-top: 1rem;
+      }
+
+      .footer-bottom p {
+        color: var(--text-light);
+        font-size: 0.8rem;
+      }
+
+      /* Responsividade */
+      @media (max-width: 768px) {
+        main {
+          padding: 1rem;
+          margin-top: 70px;
+        }
+
+        .login-container {
+          margin: 0 1rem;
+        }
+
+        .login-header {
+          padding: 2rem 1.5rem;
+        }
+
+        .login-form {
+          padding: 2rem 1.5rem;
+        }
+
+        .header {
+          padding: 1rem;
+        }
+
+        .header h1 {
+          font-size: 1.5rem;
+        }
+
+        nav ul {
+          gap: 1rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .login-header h1 {
+          font-size: 1.3rem;
+        }
+
+        .login-form {
+          padding: 1.5rem 1rem;
+        }
+
+        .credenciais-teste {
+          padding: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="header">
+        <h1>
+          <i class="fas fa-graduation-cap"></i>
+          PPGD FADISP
+        </h1>
+        <nav>
+          <ul class="header-menu">
+            <li>
+              <a href="../index.html"><i class="fas fa-home"></i> Início</a>
+            </li>
+            <li>
+              <a href="agendar.html"
+                ><i class="fas fa-calendar-plus"></i> Agendar Banca</a
+              >
+            </li>
+            <li>
+              <a href="suporte.html"><i class="fas fa-headset"></i> Suporte</a>
+            </li>
+            <li>
+              <a href="../relatório/relatorio.html" class="btn-relatorio"
+                ><i class="fas fa-chart-line"></i> Relatório</a
+              >
+            </li>
+            <li>
+              <a href="../portifolio/index.html" class="btn-portfolio"
+                ><i class="fas fa-home"></i> Portfólio</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <div class="login-container">
+        <div class="login-header">
+          <div class="logo">
+            <h2>PPGD</h2>
+          </div>
+          <h1>Área do Professor</h1>
+          <p>Faça login para acessar seu dashboard</p>
+        </div>
+
+        <div class="login-form">
+          <!-- Credenciais de Teste -->
+          <div class="credenciais-teste">
+            <h3>Credenciais para Teste</h3>
+            <p>Use uma das credenciais abaixo para fazer login:</p>
+            <div class="credencial">
+              <strong>E-mail:</strong> teste@ppgd.edu.br<br />
+              <strong>Senha:</strong> 123456
+            </div>
+            <div class="credencial">
+              <strong>E-mail:</strong> ana.costa@ppgd.edu.br<br />
+              <strong>Senha:</strong> 123456
+            </div>
+          </div>
+
+          <!-- Mensagens de erro/sucesso -->
+          <div id="mensagem" class="mensagem" style="display: none"></div>
+
+          <!-- Formulário de Login -->
+          <form id="form-login">
+            <div class="form-group">
+              <label for="email">E-mail Institucional</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="seu.email@ppgd.edu.br"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="senha">Senha</label>
+              <input
+                type="password"
+                id="senha"
+                name="senha"
+                placeholder="Digite sua senha"
+                required
+              />
+            </div>
+
+            <button type="submit" class="btn-entrar" id="btn-entrar">
+              <i
+                class="fas fa-spinner loading-spinner"
+                id="loading-spinner"
+              ></i>
+              <i class="fas fa-sign-in-alt"></i>
+              Entrar
+            </button>
+          </form>
+        </div>
+
+        <div class="footer">
+          <div class="footer-section">
+            <h3>PPGD</h3>
+            <p>Sistema de Agendamento de Bancas</p>
+          </div>
+          <div class="footer-bottom">
+            <p>&copy; 2025 - Todos os direitos reservados.</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="../js/login-professor.js"></script>
+  </body>
+</html>

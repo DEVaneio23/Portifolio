@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content="Confirmação de agendamento de banca PPGD"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Confirmação de Agendamento | PPGD</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+
+    <style>
+      /* ===========================================================================
+       VARIÁVEIS CSS - PALETA DE CORES E CONFIGURAÇÕES GLOBAIS
+       =========================================================================== */
+      :root {
+        --primary: #59110b; /* Vermelho escuro principal */
+        --secondary: #7f1c14; /* Vermelho médio secundário */
+        --accent: #9f2e1c; /* Vermelho claro de destaque */
+        --text: #333; /* Cor do texto principal */
+        --text-light: #666; /* Cor do texto secundário */
+        --white: #ffffff; /* Branco */
+        --shadow: rgba(0, 0, 0, 0.1); /* Sombra padrão */
+        --shadow-hover: rgba(89, 17, 11, 0.15); /* Sombra no hover */
+        --border: #e1e5e9; /* Borda padrão */
+        --bg-light: #f8fafc; /* Fundo claro */
+        --success: #16a34a; /* Verde para sucesso */
+        --error: #dc2626; /* Vermelho para erro */
+        --warning: #d97706; /* Laranja para aviso */
+      }
+
+      /* ===========================================================================
+       RESET CSS - NORMALIZAÇÃO DOS ELEMENTOS
+       =========================================================================== */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* ===========================================================================
+       ESTILOS DO BODY - FUNDO E TIPOGRAFIA BASE
+       =========================================================================== */
+      body {
+        font-family: "Inter", sans-serif;
+        line-height: 1.6;
+        color: var(--text);
+        background: linear-gradient(
+          135deg,
+          var(--primary) 0%,
+          var(--secondary) 100%
+        );
+        min-height: 100vh;
+      }
+
+      /* ===========================================================================
+       HEADER - CABEÇALHO FIXO COM NAVEGAÇÃO
+       =========================================================================== */
+      header {
+        background: rgba(255, 255, 255, 0.95);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 2px 20px var(--shadow);
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+      }
+
+      .header {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 1rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      /* Logo/título do PPGD */
+      .header h1 {
+        color: var(--primary);
+        font-size: 1.8rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .header h1 i {
+        color: var(--secondary);
+      }
+
+      /* Menu de navegação */
+      nav ul {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+        align-items: center;
+      }
+
+      nav a {
+        text-decoration: none;
+        color: var(--primary);
+        font-weight: 500;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+      }
+
+      nav a:hover {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: var(--white);
+        transform: translateY(-2px);
+      }
+
+      .btn-relatorio {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: var(--white) !important;
+        padding: 0.75rem 1.5rem !important;
+        border-radius: 25px !important;
+        box-shadow: 0 4px 15px var(--shadow-hover);
+      }
+
+      .btn-relatorio:hover {
+        transform: translateY(-3px) !important;
+        box-shadow: 0 6px 20px var(--shadow-hover) !important;
+      }
+
+      /* ===========================================================================
+       CONTEÚDO PRINCIPAL - PÁGINA DE CONFIRMAÇÃO
+       =========================================================================== */
+      main {
+        margin-top: 80px; /* Espaço para o header fixo */
+        padding: 2rem;
+        min-height: calc(100vh - 80px);
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        background: var(--white);
+        border-radius: 20px;
+        box-shadow: 0 20px 40px var(--shadow);
+        overflow: hidden;
+      }
+
+      .confirmacao-header {
+        background: linear-gradient(135deg, var(--success), #059669);
+        color: var(--white);
+        padding: 3rem 2rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .confirmacao-header::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+        opacity: 0.3;
+      }
+
+      .confirmacao-header i {
+        font-size: 4rem;
+        margin-bottom: 1rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .confirmacao-header h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        font-weight: 700;
+        position: relative;
+        z-index: 1;
+      }
+
+      .confirmacao-header p {
+        font-size: 1.1rem;
+        opacity: 0.9;
+        position: relative;
+        z-index: 1;
+      }
+
+      .confirmacao-content {
+        padding: 3rem 2rem;
+      }
+
+      .resumo-agendamento {
+        background: var(--bg-light);
+        border-radius: 16px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        border: 1px solid var(--border);
+      }
+
+      .resumo-agendamento h2 {
+        color: var(--primary);
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .resumo-agendamento h2 i {
+        color: var(--secondary);
+      }
+
+      .info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .info-item {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .info-item label {
+        color: var(--text-light);
+        font-size: 0.9rem;
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .info-item span {
+        color: var(--text);
+        font-weight: 600;
+        font-size: 1rem;
+      }
+
+      .protocolo {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: var(--white);
+        padding: 1.5rem;
+        border-radius: 12px;
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      .protocolo h3 {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+      }
+
+      .protocolo .numero {
+        font-size: 1.5rem;
+        font-weight: 700;
+        font-family: "Courier New", monospace;
+        background: rgba(255, 255, 255, 0.2);
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        display: inline-block;
+        margin-top: 0.5rem;
+      }
+
+      .proximos-passos {
+        background: var(--white);
+        border: 2px solid var(--border);
+        border-radius: 16px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .proximos-passos h2 {
+        color: var(--primary);
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .proximos-passos h2 i {
+        color: var(--secondary);
+      }
+
+      .passos-lista {
+        list-style: none;
+      }
+
+      .passos-lista li {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        margin-bottom: 1rem;
+        padding: 1rem;
+        background: var(--bg-light);
+        border-radius: 8px;
+        border-left: 4px solid var(--primary);
+      }
+
+      .passos-lista li:last-child {
+        margin-bottom: 0;
+      }
+
+      .passos-lista .numero-passo {
+        background: var(--primary);
+        color: var(--white);
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.8rem;
+        font-weight: 700;
+        flex-shrink: 0;
+        margin-top: 0.1rem;
+      }
+
+      .passos-lista .texto-passo {
+        color: var(--text);
+        font-weight: 500;
+      }
+
+      .acoes {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: 25px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: var(--white);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px var(--shadow-hover);
+      }
+
+      .btn-secondary {
+        background: var(--bg-light);
+        color: var(--text);
+        border: 2px solid var(--border);
+      }
+
+      .btn-secondary:hover {
+        background: var(--white);
+        border-color: var(--primary);
+        transform: translateY(-3px);
+      }
+
+      /* Responsividade */
+      @media (max-width: 768px) {
+        main {
+          padding: 1rem;
+          margin-top: 70px;
+        }
+
+        .confirmacao-header {
+          padding: 2rem 1rem;
+        }
+
+        .confirmacao-header h1 {
+          font-size: 2rem;
+        }
+
+        .confirmacao-content {
+          padding: 2rem 1rem;
+        }
+
+        .info-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .acoes {
+          flex-direction: column;
+        }
+
+        .btn {
+          width: 100%;
+          justify-content: center;
+        }
+
+        .header {
+          padding: 1rem;
+        }
+
+        .header h1 {
+          font-size: 1.5rem;
+        }
+
+        nav ul {
+          gap: 1rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .confirmacao-header h1 {
+          font-size: 1.8rem;
+        }
+
+        .confirmacao-content {
+          padding: 1.5rem 1rem;
+        }
+
+        .resumo-agendamento,
+        .proximos-passos {
+          padding: 1.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="header">
+        <h1>
+          <i class="fas fa-graduation-cap"></i>
+          PPGD FADISP
+        </h1>
+        <nav>
+          <ul class="header-menu">
+            <li>
+              <a href="../index.html"><i class="fas fa-home"></i> Início</a>
+            </li>
+            <li>
+              <a href="agendar.html"
+                ><i class="fas fa-calendar-plus"></i> Agendar Banca</a
+              >
+            </li>
+            <li>
+              <a href="suporte.html"><i class="fas fa-headset"></i> Suporte</a>
+            </li>
+            <li>
+              <a href="../relatório/relatorio.html" class="btn-relatorio"
+                ><i class="fas fa-chart-line"></i> Relatório</a
+              >
+            </li>
+            <li>
+              <a href="../portifolio/index.html" class="btn-portfolio"
+                ><i class="fas fa-home"></i> Portfólio</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <div class="container">
+        <div class="confirmacao-header">
+          <i class="fas fa-check-circle"></i>
+          <h1>Agendamento Confirmado!</h1>
+          <p>Sua banca foi agendada com sucesso</p>
+        </div>
+
+        <div class="confirmacao-content">
+          <!-- Número do Protocolo -->
+          <div class="protocolo">
+            <h3>Número do Protocolo</h3>
+            <div class="numero">PPGD-2025-001</div>
+          </div>
+
+          <!-- Resumo do Agendamento -->
+          <div class="resumo-agendamento">
+            <h2><i class="fas fa-info-circle"></i> Resumo do Agendamento</h2>
+
+            <div class="info-grid">
+              <div class="info-item">
+                <label>Nome</label>
+                <span id="nome-resumo">João Silva Santos</span>
+              </div>
+
+              <div class="info-item">
+                <label>Programa</label>
+                <span id="programa-resumo">Mestrado</span>
+              </div>
+
+              <div class="info-item">
+                <label>Data</label>
+                <span id="data-resumo">15/03/2025</span>
+              </div>
+
+              <div class="info-item">
+                <label>Horário</label>
+                <span id="horario-resumo">14:00</span>
+              </div>
+
+              <div class="info-item">
+                <label>Modalidade</label>
+                <span id="modalidade-resumo">Presencial</span>
+              </div>
+
+              <div class="info-item">
+                <label>Local</label>
+                <span id="local-resumo">Auditório Principal</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Próximos Passos -->
+          <div class="proximos-passos">
+            <h2><i class="fas fa-list-check"></i> Próximos Passos</h2>
+
+            <ul class="passos-lista">
+              <li>
+                <div class="numero-passo">1</div>
+                <div class="texto-passo">
+                  <strong>Confirmação por E-mail:</strong> Você receberá um
+                  e-mail de confirmação com todos os detalhes da banca.
+                </div>
+              </li>
+
+              <li>
+                <div class="numero-passo">2</div>
+                <div class="texto-passo">
+                  <strong>Validação da Documentação:</strong> Nossa equipe
+                  revisará os documentos enviados e entrará em contato se
+                  necessário.
+                </div>
+              </li>
+
+              <li>
+                <div class="numero-passo">3</div>
+                <div class="texto-passo">
+                  <strong>Confirmação Final:</strong> 48 horas antes da banca,
+                  você receberá a confirmação final com instruções detalhadas.
+                </div>
+              </li>
+
+              <li>
+                <div class="numero-passo">4</div>
+                <div class="texto-passo">
+                  <strong>Dia da Banca:</strong> Apresente-se no local e horário
+                  confirmados com toda a documentação necessária.
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Ações -->
+          <div class="acoes">
+            <a href="agendar.html" class="btn btn-secondary">
+              <i class="fas fa-plus"></i>
+              Novo Agendamento
+            </a>
+
+            <a href="../index.html" class="btn btn-primary">
+              <i class="fas fa-home"></i>
+              Voltar ao Início
+            </a>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

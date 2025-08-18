@@ -1,0 +1,366 @@
+/* 
+ * ===========================================================================
+ * ESTILOS DA PÁGINA DE AGENDAMENTO
+ * ===========================================================================
+ */
+
+.formulario-wrapper {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: var(--gap-grande);
+  max-width: var(--largura-maxima);
+  margin: 0 auto;
+  padding: var(--padding-container);
+  align-items: flex-start;
+}
+
+#agendamento-form {
+  background: var(--cor-fundo-branco);
+  padding: var(--padding-form);
+  border-radius: var(--radius-grande);
+  box-shadow: var(--sombra-card);
+}
+
+#agendamento-form h1 {
+  color: var(--cor-principal);
+  font-size: var(--font-titulo);
+  text-align: center;
+  margin-bottom: var(--gap-padrao);
+  font-weight: 700;
+}
+
+/* Checklist de progresso */
+.checklist-container {
+  background: var(--cor-fundo-card);
+  padding: var(--padding-card);
+  border-radius: var(--radius-grande);
+  box-shadow: var(--sombra-card);
+  height: fit-content;
+  position: sticky;
+  top: 120px; /* Espaço para o header fixo */
+}
+
+.checklist-container h2 {
+  margin-top: 0;
+  color: var(--cor-texto-escuro);
+  font-size: var(--font-subtitulo);
+  padding-bottom: var(--gap-pequeno);
+  border-bottom: 1px solid var(--cor-borda);
+  margin-bottom: var(--gap-padrao);
+}
+
+.checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--gap-padrao) 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-pequeno);
+}
+
+.checklist-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  padding: 12px;
+  border-radius: 6px;
+  background-color: #f8f9fa;
+  font-size: 0.95rem;
+  color: #6c757d;
+  transition: all 0.3s ease;
+  border: 1px solid #dee2e6;
+}
+
+.checklist-item .checkmark {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 12px;
+  border-radius: 50%;
+  background-color: #e9ecef;
+  color: #adb5bd;
+  text-align: center;
+  line-height: 20px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  flex-shrink: 0; /* Impede que o ícone encolha */
+}
+
+.checklist-item.completed {
+  background-color: #e6f9f1;
+  border-color: #58d68d;
+  color: #212529;
+  font-weight: 500;
+}
+
+.checklist-item.completed .checkmark {
+  background-color: #28a745;
+  color: white;
+}
+
+/* Barra de progresso */
+.progress-bar-container {
+  margin-top: var(--gap-padrao);
+  padding-top: var(--gap-padrao);
+  border-top: 1px solid var(--cor-borda);
+}
+
+.progress {
+  height: 8px;
+  background-color: var(--cor-fundo-hover);
+  border-radius: var(--radius-pequeno);
+  overflow: hidden;
+}
+
+.progress-indicator {
+  height: 100%;
+  background-color: var(--cor-destaque);
+  width: 0%;
+  transition: width var(--transicao-lenta) ease;
+  border-radius: var(--radius-pequeno);
+}
+
+#progress-text {
+  display: block;
+  text-align: center;
+  font-size: var(--font-contador);
+  color: var(--cor-texto-cinza);
+  font-weight: 500;
+  margin-top: var(--gap-mini);
+}
+
+/* Contadores e Dicas */
+.contador-palavras,
+.contador-keywords {
+  font-size: var(--font-contador);
+  color: var(--cor-texto-cinza);
+  margin-top: var(--gap-mini);
+  display: block;
+}
+
+/* Membros da Banca */
+.membros-internos-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--gap-padrao);
+  margin-bottom: var(--gap-padrao);
+}
+
+.coluna-membros {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-pequeno);
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  padding: var(--gap-mini);
+  border-radius: var(--radius-pequeno);
+  transition: background-color var(--transicao-rapida);
+  cursor: pointer;
+}
+
+.checkbox-container:hover {
+  background-color: var(--cor-fundo-hover);
+}
+
+.checkbox-container input[type="checkbox"] {
+  margin-right: var(--gap-mini);
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.checkbox-container label {
+  cursor: pointer;
+  font-size: var(--font-pequena);
+  color: var(--cor-texto-suave);
+  margin: 0;
+}
+
+.contador-selecionados {
+  text-align: right;
+  font-size: var(--font-contador);
+  color: var(--cor-texto-cinza);
+  margin-top: var(--gap-mini);
+  transition: color 0.2s;
+}
+
+.contador-selecionados.limite-atingido {
+  color: var(--cor-destaque);
+  font-weight: 600;
+}
+
+.membro-externo-card {
+  background: var(--cor-fundo-card);
+  padding: var(--padding-card);
+  border-radius: var(--radius-medio);
+  margin-bottom: var(--gap-padrao);
+  border-left: 4px solid var(--cor-secundaria);
+}
+
+#add-membro-externo {
+  background-color: transparent;
+  border: 2px dashed var(--cor-borda);
+  color: var(--cor-texto-cinza);
+  padding: 0.75rem;
+  width: 100%;
+  border-radius: var(--radius-medio);
+  cursor: pointer;
+  transition: all var(--transicao-padrao);
+  font-weight: 600;
+}
+
+#add-membro-externo:hover {
+  background-color: var(--cor-fundo-hover);
+  border-color: var(--cor-principal);
+  color: var(--cor-principal);
+}
+
+/* Upload de Arquivo */
+.upload-area {
+  border: 2px dashed var(--cor-borda);
+  border-radius: var(--radius-grande);
+  padding: var(--padding-card);
+  text-align: center;
+  background: var(--cor-fundo-card);
+  transition: all var(--transicao-padrao);
+  cursor: pointer;
+  position: relative;
+}
+
+.upload-area:hover, .upload-area.dragover {
+  border-color: var(--cor-principal);
+  background: var(--cor-fundo-hover);
+}
+
+.upload-area.dragover {
+  transform: scale(1.02);
+}
+
+.upload-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap-mini);
+}
+
+.upload-icon {
+  font-size: 2.5rem;
+  color: var(--cor-principal);
+}
+
+.upload-title {
+  font-weight: 600;
+  color: var(--cor-texto-escuro);
+}
+
+.upload-subtitle {
+  color: var(--cor-texto-cinza);
+  font-size: var(--font-pequena);
+}
+
+.file-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--cor-fundo-branco);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--radius-medio);
+  padding: var(--gap-pequeno) var(--gap-padrao);
+  margin-top: var(--gap-pequeno);
+  box-shadow: var(--sombra-card);
+}
+
+.file-name {
+  font-weight: 600;
+  font-size: var(--font-pequena);
+}
+
+.file-size {
+  color: var(--cor-texto-cinza);
+  font-size: var(--font-contador);
+}
+
+.remove-file {
+  background: var(--cor-erro);
+  color: var(--cor-texto-claro);
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transicao-rapida);
+}
+
+.remove-file:hover {
+  background: #a8202e;
+  transform: scale(1.1);
+}
+
+/* Validação */
+.erro-validacao {
+  border-left-color: var(--cor-erro) !important;
+  background-color: var(--cor-alerta-bg) !important;
+  color: var(--cor-erro) !important;
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+/* Responsividade */
+@media (max-width: 992px) {
+  .formulario-wrapper {
+    grid-template-columns: 1fr;
+    padding: var(--gap-padrao) var(--gap-pequeno);
+  }
+  
+  .checklist-container {
+    position: static;
+    margin-top: var(--gap-grande);
+    order: -1; /* Move o checklist para cima do formulário em telas menores */
+  }
+}
+
+@media (max-width: 768px) {
+  .membros-internos-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #agendamento-form {
+    padding: var(--padding-card);
+  }
+}
+
+@media (max-width: 480px) {
+  .formulario-wrapper {
+    padding: var(--gap-padrao) 0;
+  }
+
+  #agendamento-form,
+  .checklist-container {
+    padding: var(--gap-padrao);
+  }
+  
+  .upload-area {
+    padding: var(--gap-padrao);
+  }
+
+  .file-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--gap-mini);
+  }
+
+  .remove-file {
+    align-self: flex-end;
+  }
+}

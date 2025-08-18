@@ -1,0 +1,195 @@
+/* 
+ * ===========================================================================
+ * ESTILOS DA PÁGINA DE CONFIRMAÇÃO
+ * ===========================================================================
+ */
+
+.confirmacao-container {
+  max-width: var(--largura-formulario);
+  margin: 2rem auto;
+  padding: var(--padding-container);
+}
+
+.confirmacao-card {
+  background: var(--cor-fundo-branco);
+  padding: var(--padding-form);
+  border-radius: var(--radius-grande);
+  box-shadow: var(--sombra-card);
+  text-align: center;
+}
+
+.confirmacao-header h1 {
+  font-size: var(--font-titulo);
+  color: var(--cor-texto-escuro);
+  margin: var(--gap-pequeno) 0;
+}
+
+.confirmacao-header p {
+  color: var(--cor-texto-cinza);
+  max-width: 600px;
+  margin: 0 auto var(--gap-padrao) auto;
+}
+
+/* Animação do Checkmark */
+.checkmark {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: inline-block;
+  stroke-width: 3;
+  stroke: var(--cor-destaque);
+  stroke-miterlimit: 10;
+  box-shadow: inset 0px 0px 0px var(--cor-destaque);
+  animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+}
+
+.checkmark__circle {
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+  stroke-width: 3;
+  stroke-miterlimit: 10;
+  stroke: var(--cor-destaque);
+  fill: none;
+  animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+.checkmark__check {
+  transform-origin: 50% 50%;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+}
+
+@keyframes stroke {
+  100% { stroke-dashoffset: 0; }
+}
+
+@keyframes scale {
+  0%, 100% { transform: none; }
+  50% { transform: scale3d(1.1, 1.1, 1); }
+}
+
+@keyframes fill {
+  100% { box-shadow: inset 0px 0px 0px 40px var(--cor-destaque); }
+}
+
+/* Detalhes do Agendamento */
+.confirmacao-detalhes {
+  margin-top: var(--gap-grande);
+  text-align: left;
+  border-top: 1px solid var(--cor-borda);
+  padding-top: var(--gap-padrao);
+}
+
+.detalhe-grupo {
+  margin-top: var(--gap-padrao);
+  padding: var(--padding-card);
+  background: var(--cor-fundo-card);
+  border-radius: var(--radius-medio);
+}
+
+.detalhe-grupo h3 {
+  font-size: var(--font-subtitulo);
+  color: var(--cor-principal);
+  margin: 0 0 var(--gap-pequeno) 0;
+  padding-bottom: var(--gap-mini);
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.detalhe-item {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--gap-mini) 0;
+  border-bottom: 1px solid var(--cor-fundo-hover);
+}
+
+.detalhe-item:last-child {
+  border-bottom: none;
+}
+
+.detalhe-label {
+  font-weight: 600;
+  color: var(--cor-texto-escuro);
+}
+
+.detalhe-valor {
+  color: var(--cor-texto-suave);
+}
+
+/* Ações */
+.confirmacao-acoes {
+  margin-top: var(--gap-grande);
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: var(--gap-pequeno);
+  flex-wrap: wrap;
+}
+
+/* Botões específicos da página de confirmação */
+.btn-secundario {
+  background-color: var(--cor-secundaria);
+  color: var(--cor-texto-claro);
+}
+
+.btn-secundario:hover {
+  background-color: #6a1811;
+}
+
+.btn-terciario {
+  background-color: var(--cor-aviso);
+  color: var(--cor-texto-claro);
+}
+
+.btn-terciario:hover {
+  background-color: #d1850a;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .confirmacao-card {
+    padding: var(--padding-card);
+  }
+
+  .checkmark {
+    width: 60px;
+    height: 60px;
+  }
+
+  @keyframes fill {
+    100% { box-shadow: inset 0px 0px 0px 30px var(--cor-destaque); }
+  }
+
+  .confirmacao-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .detalhe-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--gap-mini);
+  }
+}
+
+@media (max-width: 480px) {
+  .confirmacao-container {
+    padding: var(--gap-padrao) var(--gap-pequeno);
+  }
+
+  .confirmacao-acoes {
+    flex-direction: column;
+  }
+
+  .confirmacao-acoes .btn {
+    width: 100%;
+  }
+}
+
+:root {
+  --espaco: 1rem;
+  --fonte-base: 1rem;
+  --cor-primaria: #59110b;
+  --cor-secundaria: #7f1c14;
+  --cor-sucesso: #28a745;
+  --cor-erro: #dc3545;
+}

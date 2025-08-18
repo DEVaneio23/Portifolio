@@ -1,0 +1,21 @@
+{
+  "name": "rangeclub-demo",
+  "version": "1.0.0",
+  "description": "RangeClub Demo — Sistema de Vendas (Portfólio)",
+  "private": true,
+  "scripts": {
+    "start": "echo 'Abra index.html no navegador'",
+    "build": "echo 'Arquivo estático - não precisa de build'",
+    "dev": "echo 'Use live-server ou similar para desenvolvimento'"
+  },
+  "dependencies": {
+    "moment": "^2.29.4",
+    "numeral": "^2.0.6"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  },
+  "keywords": ["rangeclub", "vendas", "supabase", "relatorios", "portfolio", "demo"],
+  "author": "RangeClub Demo",
+  "license": "MIT"
+}
