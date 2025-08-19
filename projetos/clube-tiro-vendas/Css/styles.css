@@ -457,6 +457,9 @@ nav {
   font-size: 15px;
   line-height: 1.8;
   font-weight: 500;
+  /* Previne estouro de conteúdo longo */
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
 .status-badge {
@@ -487,6 +490,11 @@ nav {
   transition: all 0.3s ease;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
   color: #ffffff;
+  /* Garantir que textos longos não quebrem layout */
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
 .produto-item:hover {
@@ -498,6 +506,7 @@ nav {
 
 .produto-info {
   flex: 1;
+  min-width: 0; /* permite encolher em layouts flex */
 }
 
 .produto-precos {
@@ -505,6 +514,13 @@ nav {
   gap: 20px;
   align-items: center;
   font-size: 15px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+/* Evita overflow horizontal de listas de preços em telas estreitas */
+@media (max-width: 480px) {
+  .produto-precos { row-gap: 8px; }
 }
 
 .preco-filiado {
@@ -610,7 +626,7 @@ nav {
 
 .produtos-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   gap: 20px;
   margin-bottom: 25px;
 }
@@ -629,6 +645,8 @@ nav {
   position: relative;
   overflow: hidden;
   color: #ffffff;
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
 .produto-card::before {
@@ -2358,6 +2376,7 @@ hr {
   gap: 16px;
   align-items: end;
 }
+.cadastro-form .field { min-width: 0; }
 .cadastro-form .field {
   display: flex;
   flex-direction: column;
@@ -2441,6 +2460,14 @@ hr {
   }
 }
 
+/* Layout totalmente empilhado para celulares */
+@media (max-width: 600px) {
+  .cadastro-form { grid-template-columns: 1fr; }
+  .cadastro-form > .field, .cadastro-form .actions { grid-column: 1 / -1; }
+  .cadastro-actions { justify-content: center; }
+  .cadastro-actions .btn { width: 100%; }
+}
+
 /* Layout do formulário do cliente */
 
 .form-cliente .field-nome {
@@ -2458,6 +2485,10 @@ hr {
 .form-cliente .actions {
   grid-column: span 12;
 }
+
+/* Evitar rótulos quebrando sobre inputs; dá mais espaço em telas estreitas */
+.cadastro-form label { white-space: normal; }
+.cadastro-form input, .cadastro-form select { width: 100%; }
 
 @media (max-width: 900px) {
   .form-cliente .field-nome {

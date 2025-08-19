@@ -593,6 +593,8 @@ body {
   padding: 25px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
+  /* Permitir rolagem horizontal da tabela em telas pequenas */
+  overflow-x: auto;
 }
 
 .transactions-section h2 {
@@ -618,6 +620,8 @@ body {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
+  /* Impede estouro do contêiner */
+  min-width: 600px;
 }
 
 .transactions-table th,

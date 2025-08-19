@@ -23,6 +23,9 @@
     box-sizing: border-box;
 }
 
+/* Imagens nunca devem estourar o container */
+img { max-width: 100%; height: auto; display: block; }
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(135deg, var(--fundo-claro) 0%, #b0e0b0 100%);
@@ -30,6 +33,9 @@ body {
     line-height: 1.6;
     min-height: 100vh;
 }
+
+/* Previne pequenos estalos de overflow horizontal */
+html, body { overflow-x: hidden; }
 
 /* Layout principal */
 .conteiner {
@@ -154,6 +160,9 @@ body {
     box-shadow: 0 8px 32px var(--sombra-verde);
     border: 2px solid var(--borda-verde);
     transition: all 0.3s ease;
+    /* Evita que textos/links longos quebrem o layout */
+    overflow-wrap: anywhere;
+    word-break: break-word;
 }
 
 .cartao--destaque {
@@ -233,22 +242,17 @@ body {
 /* Grid responsivo */
 .grade {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 2rem;
     margin: 2rem 0;
 }
 
-.grade--2-colunas {
-    grid-template-columns: repeat(2, 1fr);
-}
+/* Evita overflow de itens dentro do grid por min-width:auto implícito */
+.grade > * { min-width: 0; }
 
-.grade--3-colunas {
-    grid-template-columns: repeat(3, 1fr);
-}
-
-.grade--4-colunas {
-    grid-template-columns: repeat(4, 1fr);
-}
+.grade--2-colunas { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.grade--3-colunas { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.grade--4-colunas { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
 
 /* Formulários */
 .formulario {
@@ -342,6 +346,9 @@ body {
     margin: 1rem 0;
 }
 
+/* Evita estouro horizontal do rodapé em telas pequenas */
+.rodape__links { flex-wrap: wrap; }
+
 .rodape__link {
     color: var(--verde-claro);
     text-decoration: none;
@@ -362,6 +369,8 @@ body {
     .cabecalho__navegacao {
         gap: 1rem;
     }
+    /* Permite quebra de linha no menu em telas pequenas */
+    .cabecalho__navegacao { flex-wrap: wrap; justify-content: center; }
     
     .secao {
         padding: 2rem 1rem;
@@ -389,6 +398,15 @@ body {
         flex-direction: column;
         align-items: center;
     }
+    /* Grid e espaçamentos mais compactos em telas pequenas */
+    .grade { gap: 1rem; }
+}
+
+@media (max-width: 480px) {
+    /* Reduz paddings para manter conteúdo dentro da viewport */
+    .secao { padding: 1.5rem 0.75rem; }
+    .conteiner { padding: 0 1rem; }
+    .cartao { padding: 1.25rem; }
 }
 
 /* Animações */
